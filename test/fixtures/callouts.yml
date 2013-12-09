@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: MyString
+  deadline: 2013-12-09 18:48:32
+  description: MyText
+  user_id: 1
+
+two:
+  subject: MyString
+  deadline: 2013-12-09 18:48:32
+  description: MyText
+  user_id: 1

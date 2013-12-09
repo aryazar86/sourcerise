@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209214043) do
+ActiveRecord::Schema.define(version: 20131209230247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_roles", force: true do |t|
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -29,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131209214043) do
     t.text     "bio"
     t.string   "organization"
     t.string   "location"
+    t.integer  "user_role_id"
   end
 
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
