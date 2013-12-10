@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'factory_girl'
 
 describe User do
   before do

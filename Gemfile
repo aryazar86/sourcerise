@@ -59,7 +59,7 @@ group :test do
 end
 
 # For creating objects used in testing
-gem 'factory_girl'
+gem 'factory_girl_rails'
 
 # For tagging
 gem 'acts-as-taggable-on'
