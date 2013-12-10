@@ -6,7 +6,5 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
-
-
   belongs_to :user_role
 end

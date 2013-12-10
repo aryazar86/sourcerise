@@ -3,6 +3,7 @@ Sourcerise::Application.routes.draw do
 
   resources :user_sessions
   resources :users
+  resources :callouts
 
   root :to => 'users#new'
 
