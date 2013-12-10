@@ -9,8 +9,9 @@ describe User do
 
   it 'must have a first and last name' do 
     
-    @user.first_name.should == "Joe"
-    @user.last_name.should == "Franklin"
+    @user.first_name.should_not == "Joe"
+    @user.first_name.should == "John"
+    @user.last_name.should == "Doe"
   end
 
   it 'must have a password' do
@@ -23,7 +24,7 @@ describe User do
     @user.should_not be_valid
   end
 
-  it 'must have a unique email' do
+  it 'the email address must be unique' do
     @user2 = FactoryGirl.create(:user)
     @user2.should_not be_valid
 
@@ -32,11 +33,7 @@ describe User do
 
   end
 
-  it 'should add up contributions' do
-    @user.contributions.build(:amount => 100).save
-    @user.contributions.build(:amount => 200).save
-    @user.amount_contributed.should == 300
-  end
+ 
 
 
 end
