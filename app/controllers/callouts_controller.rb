@@ -27,6 +27,9 @@ class CalloutsController < ApplicationController
 
   def edit
     @callout = Callout.find(params[:id])
+    unless current_user.user_role_id == 2 || current_user.id == @callout.user_id
+      redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
+    end
   end
 
   private
