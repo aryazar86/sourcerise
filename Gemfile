@@ -58,6 +58,9 @@ group :test do
   gem 'rspec-rails'
 end
 
+# For integration tests
+gem 'capybara'
+
 # For creating objects used in testing
 gem 'factory_girl_rails'
 
