@@ -6,6 +6,9 @@ class CalloutsController < ApplicationController
 
   def show
     @callout = Callout.find(params[:id])
+    unless current_user.user_role_id == 2 || current_user.id == @callout.user_id
+      redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
+    end
   end
 
   def new
@@ -14,6 +17,7 @@ class CalloutsController < ApplicationController
 
   def create
     @callout = Callout.new(callout_params)
+    @callout.user_id = current_user.id
     if @callout.save
       redirect_to callouts_path, notice: 'Callout was successfully created'
     else

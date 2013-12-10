@@ -2,7 +2,12 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, only: [:index, :new, :create]
 
-
+  def show
+    @user = User.find(params[:id])
+    unless @user == current_user || current_user.user_role_id == 1
+      redirect_to :login, notice: 'You may only view your own profile'
+    end
+  end
 
   def new
     @user = User.new
