@@ -1,4 +1,5 @@
-require 'test_helper'
+require 'spec_helper'
+require 'factory_girl'
 
 describe User do
   before do
@@ -7,14 +8,10 @@ describe User do
   
   # let(:user) { User.create(:username => "Matt", :email => "Matt@awesomesauce.com", :password => "1234", :password_confirmation => "1234") }
 
-  it 'must have a username' do 
-    # user.username = nil
-    # user.should be_valid
-
-    #user = User.new( :username => "poop", :email => 'poop@poop.com',
-       # :password => 'poop', :password_confirmation => 'poop' )
+  it 'must have a first and last name' do 
     
-    @user.should be_valid
+    @user.first_name.should == "Joe"
+    @user.last_name.should == "Franklin"
   end
 
   it 'must have a password' do
