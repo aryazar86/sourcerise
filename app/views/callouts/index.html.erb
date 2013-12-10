@@ -1,2 +1,35 @@
-<h1>All callouts</h1>
-<%= render @callouts %>
+<% if current_user.user_role_id == 1 %>
+  <h1> Your Callouts</h1>
+  
+  <div>
+   <% @media_callouts.each do |c| %>
+    <% if current_user.id == c.user_id %>
+      <%= link_to c.subject, callout_path(c.id) %>
+    <% end %>
+  <% end %>
+  </div>
+  
+
+  <h1>Story Suggestions</h1>
+  
+  <div>
+    <% @story_suggests.each do |s| %>
+      <%= link_to s.subject, callout_path(s.id) %>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <h1>Your Story Suggestions</h1>
+  <% @story_suggests.each do |s| %>
+    <% if current_user.id == s.user_id %>
+      <%= link_to s.subject, callout_path(s.id) %>
+    <% end %>
+  <% end %>
+  
+  <h1>Media Callouts</h1>
+    <% @media_callouts.each do |c| %>
+      <%= link_to c.subject, callout_path(c.id) %>
+    <% end %>
+  
+<% end %>

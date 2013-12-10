@@ -1,12 +1,13 @@
 class CalloutsController < ApplicationController
 
   def index
-    @callouts = Callout.all
+    @media_callouts = Callout.all.select { |c| c.is_callout? }
+    @story_suggests = Callout.all.select { |c| c.is_suggestion? }
   end
 
   def show
     @callout = Callout.find(params[:id])
-    unless current_user.user_role_id == 2 || current_user.id == @callout.user_id
+    unless is_source? || current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
     end
   end
@@ -27,7 +28,7 @@ class CalloutsController < ApplicationController
 
   def edit
     @callout = Callout.find(params[:id])
-    unless current_user.user_role_id == 2 || current_user.id == @callout.user_id
+    unless is_source? || current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
     end
   end
