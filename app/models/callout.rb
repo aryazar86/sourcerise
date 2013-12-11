@@ -1,11 +1,9 @@
 class Callout < ActiveRecord::Base
   belongs_to :user
+  has_many :interest_connectors, :as => :interestable
+  has_many :interests, :through => :interest_connectors
 
   delegate :user_role_id, to: :user
-
-  has_many :interests, :as => :interestable
-  
-
 
 
   def is_callout?
