@@ -5,5 +5,5 @@ class Interests < ActiveRecord::Base
   has_many :sub_interests, :class_name => "Interest", :foreign_key => :parent_id
 
   belongs_to :interestable, polymorphic: true
-  
+
 end
