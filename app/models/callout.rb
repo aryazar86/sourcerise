@@ -3,6 +3,11 @@ class Callout < ActiveRecord::Base
 
   delegate :user_role_id, to: :user
 
+  has_many :interests, :as => :interestable
+  
+
+
+
   def is_callout?
     self.user_role_id == 1
   end

@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   belongs_to :user_role
+  has_many :interests, :as => :interestable
+  
 end
