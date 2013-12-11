@@ -5,7 +5,9 @@ describe User do
     @user = FactoryGirl.build(:user)
   end
   
-  # let(:user) { User.create(:username => "Matt", :email => "Matt@awesomesauce.com", :password => "1234", :password_confirmation => "1234") }
+  it 'should be valid when first built' do 
+    @user.should be_valid
+  end
 
   it 'must have a first and last name' do 
     
@@ -28,10 +30,12 @@ describe User do
     @user2 = FactoryGirl.create(:user)
     @user2.should_not be_valid
 
-    @user.email = "Doe@doe.com"
-    @user.should_not be_valid
-
   end
+
+  # it 'should permit the creation of another user as long as the email is unique'  do 
+  #   @user2 = FactoryGirl.create(:user, email: "anemail@email.com")
+  #   @user2.should be_valid
+  # end
 
  
 
