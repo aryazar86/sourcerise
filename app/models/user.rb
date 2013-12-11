@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
-
+git
   validates :email, presence: true
   validates :email, uniqueness: true
 

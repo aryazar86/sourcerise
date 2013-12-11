@@ -5,27 +5,26 @@ describe Callout do
     @callout = FactoryGirl.build(:callout)
   end
   
-  it 'must have a subject' do 
+  it 'should be valid when it is first built' do
+    @callout.should be_valid
+  end
 
+  it 'must have a subject' do 
+    @callout.subject = nil
+
+    @callout.should_not be_valid
   end
 
    it 'must have a deadline' do 
+      @callout.deadline = nil
 
-  end
-
-
- it 'should have a description' do 
-
-  end
-
-   it 'should have a creator with a user_id' do 
-
-  end
-
-   it 'should be able to tell the roll of the creator' do 
-
-  end
+      @callout.should_not be_valid
+    end
   
+  it 'must have a creator' do
+    @callout.user_id = nil
+    @callout.should_not be_valid
+  end
 
   
 
