@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
 
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
@@ -34,8 +35,12 @@
       <% end %>
     </ul>
   </section>
-</nav>
+    <div>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
+  </div>
 
+</nav>
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>

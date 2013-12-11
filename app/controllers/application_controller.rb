@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login
 
+  def is_media?
+  end
+
+  def is_source?
+    current_user.user_role_id == 2
+  end
 
   private
   def not_authenticated

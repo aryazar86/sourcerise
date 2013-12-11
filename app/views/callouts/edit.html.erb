@@ -1,0 +1,7 @@
+<% if is_media? %>
+  <h1>Edit callout, homie</h1>
+  <%= render "form" %>
+<% else %>
+  <h1>Edit story suggestion</h1>
+  <%= render "form_suggest" %>
+<% end %>

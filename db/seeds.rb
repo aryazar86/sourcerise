@@ -13,3 +13,27 @@ UserRole.create!(
 UserRole.create!(
   :role => "Source"
   )
+Callout.create!(
+  :subject => "This is the first callout",
+  :deadline => "2013-12-13 18:34:00",
+  :description => "This is the first sample callout description",
+  :user_id => 1
+  )
+Callout.create!(
+  :subject => "This is the second callout",
+  :deadline => "2013-12-13 18:34:00",
+  :description => "This is the second sample callout description",
+  :user_id => 1
+  )
+Callout.create!(
+  :subject => "This is the third callout",
+  :deadline => "2013-12-13 18:34:00",
+  :description => "This is the third sample callout description",
+  :user_id => 1
+  )
+Callout.create!(
+  :subject => "This is the fourth callout",
+  :deadline => "2013-12-13 18:34:00",
+  :description => "This is the fourth sample callout description",
+  :user_id => 1
+  )
