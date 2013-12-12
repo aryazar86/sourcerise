@@ -57,7 +57,7 @@ feature "sources' visibility in the site" do #, :type => :feature do
   end
 
   scenario "a response is rejected if it exceeds 300 characters" do 
-
+    1==0
   end
 
   scenario "source can see a response to its response" do 
