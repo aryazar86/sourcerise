@@ -3,10 +3,11 @@
 <p>Deadline: <%= @callout.deadline %></p>
 <p>Description: <%= @callout.description %> </p>
 
+
 <% @callout.replies.each do |r| %>
-  <%= r.comment %>
-  <%= r.created_at %>
-  <%= r.callout.user.first_name %>
+  <%= r.comment %><br />
+  <%= r.created_at %><br />
+  <%= r.sender.first_name %><br /><br />
 <% end %>
 
 <%= form_for ([@callout, @reply]) do |f| %>
