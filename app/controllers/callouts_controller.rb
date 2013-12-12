@@ -23,7 +23,7 @@ class CalloutsController < ApplicationController
     @callout.user_id = current_user.id
 
     if @callout.save
-      @callout.interests << Interest.find(params[:interests])
+     # @callout.interests << Interest.find(params[:interests])
       redirect_to callouts_path, notice: 'Callout was successfully created'
     else
       render "new"

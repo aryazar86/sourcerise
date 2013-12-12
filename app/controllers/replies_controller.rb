@@ -3,8 +3,8 @@ class RepliesController < ApplicationController
   before_filter :load_callout
   def create
     @reply = @callout.replies.build(reply_params)
-    @reply.sender_id = current_user.id
-    @reply.receiver_id = @callout.user_id
+    @reply.sender = current_user
+    @reply.receiver = @callout.user
 
     if @reply.save
       redirect_to callout_path(@callout), notice: "Reply posted"

@@ -4,12 +4,16 @@
 <p>Description: <%= @callout.description %> </p>
 
 <% @callout.replies.each do |r| %>
-  <%= r.comment %>
-  <%= r.created_at %>
-  <%= r.callout.user.first_name %>
+<% if r.id %>
+  <%= r.comment %><br />
+  <%= r.created_at %><br />
+  <%= r.sender.first_name %><br /><br />
+<% end %>
 <% end %>
 
 <%= form_for ([@callout, @reply]) do |f| %>
+
+
   <div class="field">
     <%= f.label :comment%><br />
     <%= f.text_area :comment %>
