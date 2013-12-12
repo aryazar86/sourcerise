@@ -1,0 +1,7 @@
+<%=
+<%= form_for "interest_connectors#create" do |int| %>
+  <% @interests.each do |i| %>
+    <%= int.check_box(@interest_connector.interest_id, i.id) %>
+    <%= int.label "interest_id_" + "#{i.id}", i.name %>
+  <% end %>
+<% end %>

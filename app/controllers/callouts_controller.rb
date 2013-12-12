@@ -15,12 +15,16 @@ class CalloutsController < ApplicationController
 
   def new
     @callout = Callout.new
+    @interests = Interest.all
+    @interest_connector = @callout.interest_connectors.build
   end
 
   def create
     @callout = Callout.new(callout_params)
     @callout.user_id = current_user.id
+
     if @callout.save
+      @callout.interests << Interest.find(params[:interests])
       redirect_to callouts_path, notice: 'Callout was successfully created'
     else
       render "new"

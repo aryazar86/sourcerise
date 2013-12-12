@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131212001807) do
+=======
+ActiveRecord::Schema.define(version: 20131211212136) do
+>>>>>>> configure_interests
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +29,27 @@ ActiveRecord::Schema.define(version: 20131212001807) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "replies", force: true do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.text     "comment"
     t.integer  "callout_id"
+=======
+  create_table "interest_connectors", force: true do |t|
+    t.integer  "interest_id"
+    t.integer  "interestable_id"
+    t.string   "interestable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interests", force: true do |t|
+    t.string   "name"
+    t.string   "topic"
+    t.integer  "parent_id"
+    t.text     "description"
+>>>>>>> configure_interests
     t.datetime "created_at"
     t.datetime "updated_at"
   end
