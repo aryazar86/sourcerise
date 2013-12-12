@@ -1,11 +1,13 @@
 Sourcerise::Application.routes.draw do
 
   resources :user_sessions
-  resources :users
-  
+  resources :users do
+    :interests
+  end
+
   resources :callouts do
     resources :replies, :except => [:index]
-    resources :interest_connectors
+    resources :interests
   end
   
   resources :user_sessions

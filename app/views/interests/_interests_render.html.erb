@@ -1,0 +1,4 @@
+<% @interests.each do |i| %>
+  <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
+  <%= label_tag "interest_#{i.id}", i.name %>
+<% end %>

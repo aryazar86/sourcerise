@@ -11,12 +11,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-
+    @interests = Interest.all
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.interests << Interest.find(params[:interests])
       redirect_to :login, notice: 'User was successfully created'
     else
       render "new"

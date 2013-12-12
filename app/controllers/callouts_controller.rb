@@ -16,7 +16,6 @@ class CalloutsController < ApplicationController
   def new
     @callout = Callout.new
     @interests = Interest.all
-    @interest_connector = @callout.interest_connectors.build
   end
 
   def create

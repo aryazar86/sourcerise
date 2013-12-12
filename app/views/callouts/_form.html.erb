@@ -14,11 +14,12 @@
     <%= c.text_area :description %>
   </p>
 
-  <% @interests.each do |i| %>
-    <%= check_box_tag 'interests[]  ', i.id, false, :id => "interest_#{i.id}" %>
-    <%= label_tag "interest_#{i.id}", i.name %>
-  <% end %>
-  
-  <%#= render "interest_connectors/form" %>
+   <%= render "interests/interests_render" %>
+  <%# @interests.each do |i| %>
+    <%#= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
+    <%#= label_tag "interest_#{i.id}", i.name %>
+  <%# end %>  
+
   <%= c.submit "Submit" %>
+
 <% end %>
