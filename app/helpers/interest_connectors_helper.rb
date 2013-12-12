@@ -1,0 +1,2 @@
+module InterestConnectorsHelper
+end

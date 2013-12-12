@@ -1,10 +1,12 @@
+<h1><%= header %></h1>
+
 <%= form_for @callout do |c| %>
   <p>
     <%= c.label :subject %><br />
     <%= c.text_field :subject %>
   </p>
   <p>
-    <%= c.label :deadline %><br />
+    <%= c.label "#{end_time}" %><br />
     <%= c.datetime_select :deadline %>
   </p>
   <p>
@@ -12,7 +14,11 @@
     <%= c.text_area :description %>
   </p>
 
+  <% @interests.each do |i| %>
+    <%= check_box_tag 'interests[]  ', i.id, false, :id => "interest_#{i.id}" %>
+    <%= label_tag "interest_#{i.id}", i.name %>
+  <% end %>
   
-  
+  <%#= render "interest_connectors/form" %>
   <%= c.submit "Submit" %>
 <% end %>

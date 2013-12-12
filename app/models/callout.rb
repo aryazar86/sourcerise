@@ -5,6 +5,7 @@ class Callout < ActiveRecord::Base
 
   delegate :user_role_id, to: :user
 
+  accepts_nested_attributes_for :interest_connectors
 
   def is_callout?
     self.user_role_id == 1
