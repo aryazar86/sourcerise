@@ -2,3 +2,20 @@
 <p>Subject: <%= @callout.subject %></p>
 <p>Deadline: <%= @callout.deadline %></p>
 <p>Description: <%= @callout.description %> </p>
+
+<% @callout.replies.each do |r| %>
+  <%= r.comment %>
+  <%= r.created_at %>
+  <%= r.callout.user.first_name %>
+<% end %>
+
+<%= form_for ([@callout, @reply]) do |f| %>
+  <div class="field">
+    <%= f.label :comment%><br />
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Post comment"%>
+  </div>
+<% end %>

@@ -1,9 +1,12 @@
 Sourcerise::Application.routes.draw do
 
 
+ 
   resources :user_sessions
   resources :users
-  resources :callouts
+  resources :callouts do
+    resources :replies, :except => [:index]
+  end
 
   root :to => 'users#new'
 

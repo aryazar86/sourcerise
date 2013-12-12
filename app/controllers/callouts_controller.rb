@@ -7,6 +7,7 @@ class CalloutsController < ApplicationController
 
   def show
     @callout = Callout.find(params[:id])
+    @reply = @callout.replies.build
     unless is_source? || current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
     end

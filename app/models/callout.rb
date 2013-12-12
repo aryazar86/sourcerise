@@ -1,6 +1,7 @@
 class Callout < ActiveRecord::Base
   belongs_to :user
-
+  has_many :replies
+  
   delegate :user_role_id, to: :user
 
   validates :deadline, presence: true
