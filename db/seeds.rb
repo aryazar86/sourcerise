@@ -85,57 +85,95 @@
 #     )
 # end
 
-#This should create a group of users who are interested in everything 'American'
-names = ["John", "Jack", "Phil", "Caleb", "Beckie"]
-americans = []
-names.each do |n|
-  User.create!(
-    :email => "#{n}@#{n}.com",
-    :first_name => "#{n}",
-    :last_name => "#{n}",
-    :password => "pass",
-    :password_confirmation => "pass"
+# #This should create a group of users who are interested in everything 'American'
+# names = ["John", "Jack", "Phil", "Caleb", "Beckie"]
+# americans = []
+# names.each do |n|
+#   User.create!(
+#     :email => "#{n}@#{n}.com",
+#     :first_name => "#{n}",
+#     :last_name => "#{n}",
+#     :password => "pass",
+#     :password_confirmation => "pass"
 
-    )
-  americans << User.last
-end
+#     )
+#   americans << User.last
+# end
+
+# all_interests = Interest.all
+
+# american_interests = all_interests.select{|i| i.name.include?("America")}
+
+# americans.each do |u|
+#   u.interests = american_interests
+# end
+
+# #This creates a group of users who are interested in everything 'African'
+
+# african_names = ["Jane", "Jill", "Hillary"]
+# africans = []
+
+# african_names.each do |n|
+#   User.create!(
+#     :email => "#{n}@#{n}.com",
+#     :first_name => "#{n}",
+#     :last_name => "#{n}",
+#     :password => "pass",
+#     :password_confirmation => "pass"
+
+#     )
+#   africans << User.last
+# end
+
+# african_interests = all_interests.select{|i| i.name.include?("Africa")}
+
+# africans.each do |u|
+#   u.interests = african_interests
+# end
+
 
 all_interests = Interest.all
 
-american_interests = all_interests.select{|i| i.name.include?("America")}
-
-americans.each do |u|
-  u.interests = american_interests
+american_callouts = []
+american_topics = ["Inequality", "Development", "Democracy", "Transparency", "Socialism"]
+iterating_id = 5
+american_topics.each do |c|
+  Callout.create!(
+    :subject => "#{c} in the hemisphere",
+    :deadline => "2013-12-14 02:23:00",
+    :description => "#{c} and its effects on countries on both continents.",
+    :user_id => iterating_id
+    )
+  iterating_id += 1
+  american_callouts << Callout.last
 end
 
-#This creates a group of users who are interested in everything 'African'
+american_interests = all_interests.select{|i| i.name.include?("America")}
 
-african_names = ["Jane", "Jill", "Hillary"]
-africans = []
+american_callouts.each do |c|
+  c.interests << american_interests
+end
 
-african_names.each do |n|
-  User.create!(
-    :email => "#{n}@#{n}.com",
-    :first_name => "#{n}",
-    :last_name => "#{n}",
-    :password => "pass",
-    :password_confirmation => "pass"
 
+african_topics = ["Inequality", "Development", "Democracy"]
+african_callouts = []
+iterating_id = 10
+african_topics.each do |c|
+  Callout.create!(
+    :subject => "#{c} in Africa",
+    :deadline => "2013-12-14 02:23:00",
+    :description => "#{c} and its effects on countries on both continents.",
+    :user_id => iterating_id
     )
-  africans << User.last
+  iterating_id += 1
+  african_callouts << Callout.last
 end
 
 african_interests = all_interests.select{|i| i.name.include?("Africa")}
 
-africans.each do |u|
-  u.interests = african_interests
+african_callouts.each do |c|
+  c.interests << african_interests
 end
-
-
-
-
-
-
 
 
 
