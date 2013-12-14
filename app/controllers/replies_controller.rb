@@ -4,7 +4,9 @@ class RepliesController < ApplicationController
   def create
     @reply = @callout.replies.build(reply_params)
     @reply.sender = current_user
-    @reply.receiver = @callout.user
+    @reply.receiver_id ||= @callout.user_id
+
+
 
     if @reply.save
       redirect_to callout_path(@callout), notice: "Reply posted"
