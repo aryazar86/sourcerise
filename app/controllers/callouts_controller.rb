@@ -15,9 +15,9 @@ class CalloutsController < ApplicationController
 
   def new
     @callout = Callout.new
-    @location_interests = Interest.all.map {|i| if i.topic = "Location"}
-    @issue_interests = Interest.all.map {|i| if i.topic = "Issue"}
-    # @format_interests = Interest.all.map {|i| if i.topic = "Format"}
+    @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
+    @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @selected_interests = []
   end
 
   def create
@@ -34,6 +34,9 @@ class CalloutsController < ApplicationController
 
   def edit
     @callout = Callout.find(params[:id])
+    @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
+    @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @selected_interests = @callout.interests
     unless is_source? || current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
     end

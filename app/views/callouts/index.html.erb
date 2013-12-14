@@ -4,7 +4,10 @@
   <div>
    <% @media_callouts.each do |c| %>
     <% if current_user.id == c.user_id %>
-      <li><%= link_to c.subject, callout_path(c.id) %></li>
+      <li><%= link_to c.subject, callout_path(c.id) %>        
+        <% c.interests.each do |i| %>
+          <%= i.name %>
+        <% end %></li>
     <% end %>
   <% end %>
   </div>
@@ -14,7 +17,10 @@
   
   <div>
     <% @story_suggests.each do |s| %>
-      <li><%= link_to s.subject, callout_path(s.id) %></li>
+      <li><%= link_to s.subject, callout_path(s.id) %>        
+        <% c.interests.each do |i| %>
+          <%= i.name %>
+        <% end %></li>
     <% end %>
   </div>
 
@@ -23,13 +29,21 @@
   <h1>Your Story Suggestions</h1>
   <% @story_suggests.each do |s| %>
     <% if current_user.id == s.user_id %>
-      <li><%= link_to s.subject, callout_path(s.id) %></li>
+      <li><%= link_to s.subject, callout_path(s.id) %><br/>
+        <% s.interests.each do |i| %>
+          <%= i.name %>
+        <% end %>
+      </li>
     <% end %>
   <% end %>
   
   <h1>Media Callouts</h1>
     <% @media_callouts.each do |c| %>
-      <li><%= link_to c.subject, callout_path(c.id) %></li>
+      <li><%= link_to c.subject, callout_path(c.id) %>
+        <% c.interests.each do |i| %>
+          <%= i.name %>
+        <% end %>
+      </li>
     <% end %>
   
 <% end %>

@@ -18,7 +18,12 @@
               <%= check_box_tag 'all', p.id, false, :id => "all" %>
                 <%= label_tag "all", "All" %>
               <% children.each do |i| %>
-                  <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
+                <% if @selected_interests.include?(i) %>
+                  <% checked = true %>
+                <% else %>
+                  <% checked = false %>
+                <% end %>
+                  <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
                   <%= label_tag "interest_#{i.id}", i.name %>
               <% end %>
             </div>
@@ -31,7 +36,13 @@
   <div class="content active" id="issues">
     <% @issue_interests.each do |i| %>
       <% if i.parent_id == 0 %>
-        <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
+        <% if @selected_interests.include?(i) %>
+          <% checked = true %>
+        <% else %>
+          <% checked = false %>
+        <% end %>
+
+        <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}" %>
         <%= label_tag "interest_#{i.id}", i.name %>
       <% end %>
     <% end %>
