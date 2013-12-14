@@ -38,51 +38,105 @@
 #   :user_id => 1
 #   )
 
-  location = [
-    ["North America", 0],
-     ["South America", 0], 
-     ["Africa", 0], 
-     ["Europe", 0], 
-     ["Asia", 0], 
-     ["Australia", 0], 
-     ["Canada", 1], 
-     ["USA", 1], 
-     ["Mexico", 1], 
-     ["Central America", 2], 
-     ["Latin America", 2], 
-     ["Subsaharan", 3], 
-     ["East Africa", 3], 
-     ["West Africa", 3], 
-     ["Central Africa", 3], 
-     ["Western Europe", 4], 
-     ["Eastern Europe", 4], 
-     ["Russia", 4], 
-     ["Middle East", 5], 
-     ["India", 5], 
-     ["Central Asia", 5], 
-     ["China", 5], 
-     ["Southeast Asia", 5], 
-     ["Micronesia", 6], 
-     ["New Zealand", 6]
-]
+#   location = [
+#     ["North America", 0],
+#      ["South America", 0], 
+#      ["Africa", 0], 
+#      ["Europe", 0], 
+#      ["Asia", 0], 
+#      ["Australia", 0], 
+#      ["Canada", 1], 
+#      ["USA", 1], 
+#      ["Mexico", 1], 
+#      ["Central America", 2], 
+#      ["Latin America", 2], 
+#      ["Subsaharan", 3], 
+#      ["East Africa", 3], 
+#      ["West Africa", 3], 
+#      ["Central Africa", 3], 
+#      ["Western Europe", 4], 
+#      ["Eastern Europe", 4], 
+#      ["Russia", 4], 
+#      ["Middle East", 5], 
+#      ["India", 5], 
+#      ["Central Asia", 5], 
+#      ["China", 5], 
+#      ["Southeast Asia", 5], 
+#      ["Micronesia", 6], 
+#      ["New Zealand", 6]
+# ]
 
 
-  location.each do |l|
-    Interest.create!(
-      :name => l[0],
-      :parent_id => l[1],
-      :topic => "Location"
-      )
-  end
+#   location.each do |l|
+#     Interest.create!(
+#       :name => l[0],
+#       :parent_id => l[1],
+#       :topic => "Location"
+#       )
+#   end
 
-issue = [["Human Rights", 0], ["Enviroment", 0], ["Poverty", 0]]
+# issue = [["Human Rights", 0], ["Enviroment", 0], ["Poverty", 0]]
 
-issue.each do |i|
-  Interest.create!(
-    :name => i[0],
-    :parent_id => i[1],
-    :topic => "Issue"
+# issue.each do |i|
+#   Interest.create!(
+#     :name => i[0],
+#     :parent_id => i[1],
+#     :topic => "Issue"
+#     )
+# end
+
+#This should create a group of users who are interested in everything 'American'
+names = ["John", "Jack", "Phil", "Caleb", "Beckie"]
+americans = []
+names.each do |n|
+  User.create!(
+    :email => "#{n}@#{n}.com",
+    :first_name => "#{n}",
+    :last_name => "#{n}",
+    :password => "pass",
+    :password_confirmation => "pass"
+
     )
+  americans << User.last
 end
+
+all_interests = Interest.all
+
+american_interests = all_interests.select{|i| i.name.include?("America")}
+
+americans.each do |u|
+  u.interests = american_interests
+end
+
+#This creates a group of users who are interested in everything 'African'
+
+african_names = ["Jane", "Jill", "Hillary"]
+africans = []
+
+african_names.each do |n|
+  User.create!(
+    :email => "#{n}@#{n}.com",
+    :first_name => "#{n}",
+    :last_name => "#{n}",
+    :password => "pass",
+    :password_confirmation => "pass"
+
+    )
+  africans << User.last
+end
+
+african_interests = all_interests.select{|i| i.name.include?("Africa")}
+
+africans.each do |u|
+  u.interests = african_interests
+end
+
+
+
+
+
+
+
+
 
 
