@@ -1,4 +1,39 @@
-<% @interests.each do |i| %>
-  <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
-  <%= label_tag "interest_#{i.id}", i.name %>
-<% end %>
+<h2>What are you interested in?</h2>
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#issues">Issues</a></dd>
+  <dd><a href="#locations">Locations</a></dd>
+  <dd><a href="#mediatypes">Media Types</a></dd>
+</dl>
+
+<div class="tabs-content">
+
+  <div class="content" id="locations">
+    <dl class="accordion" data-accordion>
+      <% main_parents = @location_interests.select { |i| i if i.parent_id == 0 } %>
+      <% main_parents.each do |p| %>
+        <dd id="<%=p.id%>"><a href="#panel<%="#{p.id}"%>"><%=p.name%></a>
+          <% children = @location_interests.select { |i| i if i.parent_id == p.id} %>
+          <% if !children.empty? %>
+            <div id="panel<%="#{p.id}"%>" class="content" >
+              <%= check_box_tag 'all', p.id, false, :id => "all" %>
+                <%= label_tag "all", "All" %>
+              <% children.each do |i| %>
+                  <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
+                  <%= label_tag "interest_#{i.id}", i.name %>
+              <% end %>
+            </div>
+          <% end %>
+        </dd>
+      <% end %>
+    </dl>
+  </div>
+
+  <div class="content active" id="issues">
+    <% @issue_interests.each do |i| %>
+      <% if i.parent_id == 0 %>
+        <%= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
+        <%= label_tag "interest_#{i.id}", i.name %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

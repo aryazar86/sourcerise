@@ -17,3 +17,22 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function() {
+  $("input[name='all']").click(function() { 
+    var parent_to_check = $(this).attr('value');
+    allInterests = [];
+    allInterests = document.getElementsByName('interests[]');
+
+    for (var i =0; i < allInterests.length; i++){
+      if(allInterests[i].getAttribute('data-parent-id') == parent_to_check) {
+        if(allInterests[i].checked) {
+        allInterests[i].checked = false;
+      } else {
+        allInterests[i].checked = true;
+      }
+      }; 
+    };
+  });
+});
+

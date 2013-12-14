@@ -3,15 +3,16 @@
 <p>Deadline: <%= @callout.deadline %></p>
 <p>Description: <%= @callout.description %> </p>
 
+<h3>Replies</h3>
 <% @callout.replies.each do |r| %>
-  <%= r.comment %>
-  <%= r.created_at %>
-  <%= r.callout.user.first_name %>
+  <% if r.comment != nil %>
+    <p><%= r.comment %></p><em><%= r.created_at %> by <%= r.callout.user.first_name %></em></p>
+  <% end %>
 <% end %>
 
 <%= form_for ([@callout, @reply]) do |f| %>
   <div class="field">
-    <%= f.label :comment%><br />
+    <%= f.label "Write a Reply:" %><br />
     <%= f.text_area :comment %>
   </div>
 

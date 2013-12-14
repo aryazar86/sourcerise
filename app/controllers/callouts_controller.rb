@@ -15,7 +15,9 @@ class CalloutsController < ApplicationController
 
   def new
     @callout = Callout.new
-    @interests = Interest.all
+    @location_interests = Interest.all.map {|i| if i.topic = "Location"}
+    @issue_interests = Interest.all.map {|i| if i.topic = "Issue"}
+    # @format_interests = Interest.all.map {|i| if i.topic = "Format"}
   end
 
   def create

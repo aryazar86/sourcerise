@@ -1,5 +1,7 @@
 Sourcerise::Application.routes.draw do
 
+  get "/users/get_interests" => "users#get_interests"
+
   resources :user_sessions
   resources :users do
     :interests
@@ -9,7 +11,7 @@ Sourcerise::Application.routes.draw do
     resources :replies, :except => [:index]
     resources :interests
   end
-  
+
   resources :user_sessions
   resources :users
 

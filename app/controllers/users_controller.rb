@@ -11,10 +11,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @interests = Interest.all
+    @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
+    @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
   end
 
-  def create
+  def create 
     @user = User.new(user_params)
     if @user.save
       @user.interests << Interest.find(params[:interests])
@@ -34,6 +35,15 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       render "edit"
+    end
+  end
+
+  def get_interests
+    @sub_interests = Interest.all.map { |i| i if i.parent_id == params[:choice].to_i }
+    
+    respond_to do |format|
+      format.js {}
+      format.html {redirect_to new_user_path}
     end
   end
 
