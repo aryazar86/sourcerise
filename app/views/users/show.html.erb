@@ -9,3 +9,11 @@
 <% @user.interests.each do |i| %>
   <li><%= i.topic %>: <%= i.name %></li>
 <% end %></h3>
+
+
+<h3>Your activity:</h3>
+<% @callouts.each do |c| %>
+  <% if c != nil %>
+    <li><%= link_to c.subject, callout_path(c.id) %></li>
+  <% end %>
+<% end %>

@@ -1,0 +1,17 @@
+<% if @callout.replies.first.id == nil %>
+  <p> No responses yet! </p>
+<% else %>
+  <% messengers = [] %>
+  <% @callout.replies.each do |r| %>
+    <% messengers << r.sender unless r.sender == current_user %>
+  <% end %>
+
+  <dl class="tabs vertical" data-tab>
+    <% messengers.compact.uniq.sort.each do |m| %>
+      <dd><a class="messenger" href="#<%=m.id%>" data-id="<%=m.id%>" data-callout="<%=@callout.id%>"><%= m.first_name %></a><dd>
+    <% end %>
+  </dl>
+  <div class="tabs-content vertical" id="messages-content">
+    <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => messengers.first, :reply => @reply } %>
+  </div>
+<% end %>

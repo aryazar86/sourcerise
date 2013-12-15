@@ -18,13 +18,13 @@
   <div>
     <% @story_suggests.each do |s| %>
       <li><%= link_to s.subject, callout_path(s.id) %>        
-        <% c.interests.each do |i| %>
+        <% s.interests.each do |i| %>
           <%= i.name %>
         <% end %></li>
     <% end %>
   </div>
 
-<% else %>
+<% else %>  
 
   <h1>Your Story Suggestions</h1>
   <% @story_suggests.each do |s| %>

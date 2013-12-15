@@ -35,7 +35,7 @@
 
     <ul class="left">
       <% if current_user %>
-        <% if current_user.user_role == 1 %>
+        <% if current_user.user_role_id == 1 %>
           <li><%= link_to "View Source Story Suggests", callouts_path %></li>
           <li><%= link_to "Make a Callout", new_callout_path %> </li>
 

@@ -4,39 +4,9 @@
 <p>Description: <%= @callout.description %> </p>
 
 <h3>Replies</h3>
-<% @callout.replies.each do |r| %>
 
-  <% if r.id %>
-    <%= r.comment %><br />
-    <%= r.created_at %><br />
-    <%= r.sender.first_name %><br />
-<%= form_for ([@callout, @reply]) do |f| %>
-
-
-      <div class="field">
-        <%= f.label :comment%><br />
-        <%= f.text_area :comment %>
-        <%= f.hidden_field :receiver_id, :value => r.sender_id %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Post comment"%>
-      </div>
-    <% end %>
-    <br />
-  <% end %>
-<% end %>
-
-<%= form_for ([@callout, @reply]) do |f| %>
-
-
-  <div class="field">
-    <%= f.label "Write a Reply:" %><br />
-    <%= f.text_area :comment %>
-
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Post comment"%>
-  </div>
+<% if current_user == @callout.user %>
+  <%= render :partial => "inbox", :object => @callout %>
+<% else %>
+  <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => current_user, :reply => @reply } %>
 <% end %>
