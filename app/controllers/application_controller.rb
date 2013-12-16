@@ -5,16 +5,20 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login
 
+  helper_method :filter_callouts
+
   def is_media?
   end
 
   def is_source?
     current_user.user_role_id == 2
   end
-
+  
   private
   def not_authenticated
     redirect_to login_path, alert: "Please login first"
   end
+
+
 
 end
