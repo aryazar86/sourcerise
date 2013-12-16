@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
@@ -53,6 +52,24 @@ $(document).ready(function() {
       }
     });
   });
+  // $('#reply_button').on('click', function(event)
+  // {
+  //   event.preventDefault();
+    
+  //   // var url = $(this).attr("action");
+  //   var data = $(this).serialize();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: 'callouts/replies/create',
+  //     dateType: 'script',
+  //     data: data,
+  //     success: function(result) {
+  //       eval(result);
+  //     }      
+  //   }).done(function (data){
+  //     $("textarea").val("");
+  //   });
+  // });
 
 });
 
