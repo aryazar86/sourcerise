@@ -1,8 +1,12 @@
 class CalloutsController < ApplicationController
 
   def index
-    @media_callouts = Callout.all.select { |c| c.is_callout? }
-    @story_suggests = Callout.all.select { |c| c.is_suggestion? }
+    #@media_callouts = Callout.all.select { |c| c.is_callout? }
+    @media_callouts = Callout.filter_callouts(current_user.interests).select { |c| c.is_callout? }
+    #@story_suggests = Callout.all.select { |c| c.is_suggestion? }
+    @story_suggests = Callout.filter_callouts(current_user.interests).select { |c| c.is_suggestion? }
+  
+    @callouts = Callout.all
   end
 
   def show
@@ -22,7 +26,7 @@ class CalloutsController < ApplicationController
     @callout.user_id = current_user.id
 
     if @callout.save
-     # @callout.interests << Interest.find(params[:interests])
+      @callout.interests << Interest.find(params[:interests])
       redirect_to callouts_path, notice: 'Callout was successfully created'
     else
       render "new"
