@@ -8,13 +8,15 @@
     <%= r.comment %><br />
     <%= r.created_at %><br />
     <%= r.sender.first_name %><br />
-<%= form_for ([@callout, @reply]) do |f| %>
+<%= form_for ([@callout, @reply], "data-abide" => "") do |f| %>
 
 
       <div class="field">
         <%= f.label :comment%><br />
         <%= f.text_area :comment %>
         <%= f.hidden_field :receiver_id, :value => r.sender_id %>
+            <small class="error">Name is required and must be a string.</small>
+
       </div>
 
       <div class="actions">
