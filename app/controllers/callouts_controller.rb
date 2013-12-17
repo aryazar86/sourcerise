@@ -6,7 +6,9 @@ class CalloutsController < ApplicationController
     #@story_suggests = Callout.all.select { |c| c.is_suggestion? }
     @story_suggests = Callout.filter_callouts(current_user.interests).select { |c| c.is_suggestion? }
   
-    @callouts = Callout.all
+    @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
+    @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @selected_interests = current_user.interests
   end
 
   def show

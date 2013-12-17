@@ -1,16 +1,5 @@
 <% if current_user.user_role_id == 1 %>
-  <h1> Your Callouts</h1>
   
-  <div>
-   <% @media_callouts.each do |c| %>
-    <% if current_user.id == c.user_id %>
-      <li><%= link_to c.subject, callout_path(c.id) %>        
-        <% c.interests.each do |i| %>
-          <%= i.name %>
-        <% end %></li>
-    <% end %>
-  <% end %>
-  </div>
   
 
   <h1>Story Suggestions</h1>
@@ -21,21 +10,14 @@
         <% s.interests.each do |i| %>
           <%= i.name %>
         <% end %></li>
+      <h3>Filter Suggestions by Interests</h3>
+     
     <% end %>
   </div>
 
 <% else %>  
 
-  <h1>Your Story Suggestions</h1>
-  <% @story_suggests.each do |s| %>
-    <% if current_user.id == s.user_id %>
-      <li><%= link_to s.subject, callout_path(s.id) %><br/>
-        <% s.interests.each do |i| %>
-          <%= i.name %>
-        <% end %>
-      </li>
-    <% end %>
-  <% end %>
+ 
   
   <h1>Media Callouts</h1>
     <% @media_callouts.each do |c| %>
@@ -45,5 +27,8 @@
         <% end %>
       </li>
     <% end %>
+  <h3>Filter Callouts by Interests</h3>
   
 <% end %>
+
+ <%= render "interests/interests_render" %>
