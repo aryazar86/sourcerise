@@ -13,7 +13,63 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function() {
+  $("input[name='all']").click(function() { 
+    var parent_to_check = $(this).attr('value');
+    allInterests = [];
+    allInterests = document.getElementsByName('interests[]');
+
+    for (var i =0; i < allInterests.length; i++){
+      if(allInterests[i].getAttribute('data-parent-id') == parent_to_check) {
+        if(allInterests[i].checked) {
+        allInterests[i].checked = false;
+      } else {
+        allInterests[i].checked = true;
+      }
+      }; 
+    };
+  });
+
+  $('.messenger').on('click', function(event)
+  {
+    event.preventDefault();
+    var messenger_id = $(this).attr('data-id');
+    var callout_id = $(this).attr('data-callout');
+    var url = '/callouts/get_messages';
+    $.ajax({
+      url: url,
+      dateType: 'script',
+      data: {
+        messengerid: messenger_id,
+        calloutid: callout_id
+      },
+      success: function(result) {
+        eval(result);
+      }
+    });
+  });
+  // $('#reply_button').on('click', function(event)
+  // {
+  //   event.preventDefault();
+    
+  //   // var url = $(this).attr("action");
+  //   var data = $(this).serialize();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: 'callouts/replies/create',
+  //     dateType: 'script',
+  //     data: data,
+  //     success: function(result) {
+  //       eval(result);
+  //     }      
+  //   }).done(function (data){
+  //     $("textarea").val("");
+  //   });
+  // });
+
+});
+

@@ -15,7 +15,7 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">SourceRise</a></h1>
+      <h1><%= link_to "SourceRise", root_url %></h1>
     </li>
   </ul>
 
@@ -23,7 +23,7 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
-        <li class="active"><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+        <li class="active"><%= link_to current_user.first_name.capitalize, user_path(current_user.id) %></li>
         <li>
           <%= link_to "Logout", :logout, method: :post %>
         </li>
@@ -32,13 +32,32 @@
         <li><%= link_to "Register", new_user_path %></li>
       <% end %>
     </ul>
+
+    <ul class="left">
+      <% if current_user %>
+        <% if current_user.user_role_id == 1 %>
+          <li><%= link_to "View Source Story Suggests", callouts_path %></li>
+          <li><%= link_to "Make a Callout", new_callout_path %> </li>
+
+        <% else %>
+          <li><%= link_to "View Media Callouts", callouts_path %> </li>
+          <li><%= link_to "Suggest a Story", new_callout_path %></li>
+        <% end %>
+      <% end %>
+    </ul>
+
   </section>
 </nav>
     <div>
     <p id="notice"><%= flash[:notice] %></p>
     <p id="alert"><%= flash[:alert] %></p>
   </div>
-    <%= yield %>
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <%= yield %>
+    </div>
+  </div>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

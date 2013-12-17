@@ -1,18 +1,25 @@
 class RepliesController < ApplicationController
   
   before_filter :load_callout
+
   def create
     @reply = @callout.replies.build(reply_params)
     @reply.sender = current_user
     @reply.receiver_id ||= @callout.user_id
 
+    @messenger = User.find(params[:reply][:receiver_id])
+    @callout = Callout.find(params[:callout_id])
+    @reply2 = @callout.replies.build
 
-
-    if @reply.save
-      redirect_to callout_path(@callout), notice: "Reply posted"
-    else
-      render :action => :show, notice: "Reply failed to post"
-    end
+  respond_to do |format|
+      if @reply.save
+        format.html { redirect_to callout_path(@callout), notice: "Reply posted" }
+        format.js {}
+      else
+        format.html { render :action => :show, notice: "Reply failed to post" }
+        format.js {}
+      end
+      end
   end
 
   def show

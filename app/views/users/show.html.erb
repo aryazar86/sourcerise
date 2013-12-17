@@ -1,6 +1,19 @@
-<p> Users show!</p>
-Email address: <%= @user.email %><br />
-Name: <%= @user.first_name %><%= @user.last_name %><br />
-Bio: <%= @user.bio %><br />
-Organization: <%= @user.organization %><br />
-Location: <%= @user.location %>
+<h1> Name: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+
+<h3>Email address: <%= @user.email %></h3>
+<h3>Bio: <%= @user.bio %></h3>
+<h3>Organization: <%= @user.organization %></h3>
+<h3>Location: <%= @user.location %></h3>
+
+<h3>Interests:
+<% @user.interests.each do |i| %>
+  <li><%= i.topic %>: <%= i.name %></li>
+<% end %></h3>
+
+
+<h3>Your activity:</h3>
+<% @callouts.each do |c| %>
+  <% if c != nil %>
+    <li><%= link_to c.subject, callout_path(c.id) %></li>
+  <% end %>
+<% end %>

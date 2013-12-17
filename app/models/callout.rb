@@ -25,4 +25,28 @@ class Callout < ActiveRecord::Base
     self.user_role_id == 2
   end
 
+
+  def self.filter_callouts(interested_items)
+    c = Callout.all
+    filtered_callouts = []
+
+    interested_items.each do |interest_in_question|
+      c.each do |x|
+        x.interests.each do |y|
+          if y.name.include?(interest_in_question.name)
+            filtered_callouts << x
+          end
+        end
+      end
+    end
+    filtered_callouts.uniq!
+    filtered_callouts
+  end
+
+  
+
+
+
+  
+
 end
