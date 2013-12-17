@@ -11,6 +11,7 @@
           <%= i.name %>
         <% end %></li>
       <h3>Filter Suggestions by Interests</h3>
+      <%="#{@story_suggests.length} suggestions match your interests." %>
      
     <% end %>
   </div>
@@ -28,7 +29,7 @@
       </li>
     <% end %>
   <h3>Filter Callouts by Interests</h3>
-  
+  <p><%="#{@media_callouts.length} callouts match your interests." %></p>
 <% end %>
 
  <%= render "interests/interests_render" %>

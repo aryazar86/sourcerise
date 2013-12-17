@@ -21,6 +21,10 @@ class CalloutsController < ApplicationController
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
     @selected_interests = []
+
+    
+    @interested_media = User.filter_users(current_user.interests).select{|u| u.is_media?}
+    @interested_sources = User.filter_users(current_user.interests).select{|u| u.is_source?}
   end
 
   def create
