@@ -59,6 +59,9 @@
   padding-bottom: 99999px;
   background-color: #ADE2F0;
   box-shadow: 10px 0px 5px #888888;
+}
+.lowerleft {
+  padding: 40px;
 
 }
 
@@ -90,4 +93,24 @@
 
 .name {
   width:50%;
+}
+
+#editbutton {
+  border-style: solid;
+  border-color: #00a6cf;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 5px;
+  background-color: #D6F0F8;
+  float: right;
+}
+.interests {
+  padding: 5px;
+  border-style: solid;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px #888888;
+  float:left;
+}
+.interests li {
+  list-style-type: none;
 }
