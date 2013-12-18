@@ -2,18 +2,31 @@
     
   <div class="calls">
     <% story_suggests.each do |s| %>
-      <div class="callout-display"><%= link_to s.subject, callout_path(s.id) %>        
-      </div>
-      
-     
+      <%= link_to (callout_path(s.id)) do %>
+        <div class="callout-display">
+        <% if s.image %>
+          <%= image_tag(s.image) %>
+        <% end %>
+        <p><%= s.subject %></p>
+        </div>
+      <% end %>      
     <% end %>
+    
   </div>
+
 <% else %>  
+  
   <div class="calls">
     <% media_callouts.each do |c| %>
+      <%= link_to (callout_path(c.id)) do %>
       <div class="callout-display">
-        <%= link_to c.subject, callout_path(c.id) %>
-      </div>
+        <% if c.image %>
+          <%= image_tag (c.image) %>
+        <% end %>
+        <p><%= c.subject %></p>
+        </div>
+        <% end %>
+      
     <% end %>
   </div>
 <% end %>

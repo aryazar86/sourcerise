@@ -87,7 +87,7 @@ class CalloutsController < ApplicationController
   
   private
   def callout_params
-    params.require(:callout).permit(:subject, :deadline, :description, :user_id)
+    params.require(:callout).permit(:subject, :deadline, :description, :user_id, :image)
   end
 
 end

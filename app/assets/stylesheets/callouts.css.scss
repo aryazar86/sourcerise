@@ -34,15 +34,29 @@ div content{
 }
 
 .callout-display{
-  height: 130px;
-  width: 130px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
   background: white;
   margin: 50px;
   float: left;
   box-shadow: 0px 0px 3px 4px #E3E3E3;
   padding: 8px;
+  text-align: center;
+
 }
 
+.callout-display img{
+  border: 1px solid black;
+}
+
+.callout-display p{
+  vertical-align: center;
+  margin-top: 20px;
+}
+
+
+
 .callout-display:hover{
-  box-shadow: 0px 0px 3px 4px #BEBEBE;
+  box-shadow: 0px 0px 3px 4px #00a6cf;
 }

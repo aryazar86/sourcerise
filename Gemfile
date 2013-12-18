@@ -49,6 +49,7 @@ gem 'rolify'
 
 # For adding images
 gem 'carrierwave'
+gem 'rmagick'
 
 # For testing
 group :test do
