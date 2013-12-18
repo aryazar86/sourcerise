@@ -18,6 +18,7 @@
 $(function(){ $(document).foundation(); });
 
 $(document).ready(function() {
+
   $("input[name='all']").click(function() { 
     var parent_to_check = $(this).attr('value');
     allInterests = [];
@@ -119,6 +120,12 @@ $(document).ready(function() {
 
       $(this).parent().parent().css (
         "background-color", "#00a6cf");
+
+      $('#media-reg-form').css (
+        "opacity", "1");
+
+      $('#title').fadeIn().text('Great, please register!');
+
     }
 
     });
@@ -144,7 +151,11 @@ $(document).ready(function() {
       $(this).css (
         "cursor", "default");
 
-      // $('.registration.buttons:hover').remove();
+      $('#source-reg-form').css (
+        "opacity", "1");
+
+      $('#title').fadeIn().text('Great, please register!');
+
     }
   });
 

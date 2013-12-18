@@ -53,3 +53,29 @@
   display: block;
 
 }
+
+#new_user {
+  position: relative;
+  height: 0px;
+  width: 400px;
+  padding-left: 0;
+  padding-right: 50px;
+  line-height: 0;
+  margin-left: 100px;
+  margin-right: auto;
+}
+
+#media-reg-form {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#source-reg-form {
+  margin-left: 450px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.name {
+  width:50%;
+}

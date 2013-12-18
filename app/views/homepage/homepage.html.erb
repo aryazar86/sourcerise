@@ -1,9 +1,18 @@
 <div class="row">
       <%= image_tag 'logo.png', :class => "registration" %>
-      <h3 style="text-align:center">ARE YOU...<h3>
+      <h3 style="text-align:center" id="title">ARE YOU...<h3>
 </div>
 
 <div class="row registration-panel">
+
+  <div id="media-reg-form">
+    <%= render :partial => "users/register", :object => @user, :locals => {:user_role_id => 1} %>
+  </div>
+
+  <div id="source-reg-form">
+    <%= render :partial => "users/register", :object => @user, :locals => {:user_role_id => 2} %>
+  </div>
+  
   <div id="media-registration" class="small-6 columns" >
     <div id="media-button" class="registration buttons">
       <%= image_tag 'media.png' %>
@@ -11,6 +20,7 @@
       <h5 style="text-align:center"> looking for expert,<br/>on-the-ground source?</h5>
     </div>
   </div>
+
     <div id="source-registration" class="small-6 columns">
       <div id="source-button" class="registration buttons">
       <%= image_tag 'source.png'%>
