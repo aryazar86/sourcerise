@@ -103,42 +103,49 @@ $(document).ready(function() {
 
 
   $('#media-button').on('click', function() {
+    if ($(this).parent().parent().css ('background-color') == "rgb(238, 238, 238)") {
+      var foo = $('#source-registration').position().left - $('#media-registration').position().left;
+      var lefty = "" + foo + "px";
 
-    var foo = $('#source-registration').position().left - $('#media-registration').position().left;
-    var lefty = "" + foo + "px";
+      console.log(lefty);
 
-    console.log(lefty);
+      $(this).parent().animate (
+          { left: lefty }, 
+          750
+        );
 
-    $(this).parent().animate (
-        { left: lefty }, 
-        750
-      );
+      $(this).parent().css (
+        "z-index", "10");
 
-    $(this).parent().css (
-      "z-index", "10");
+      $(this).parent().parent().css (
+        "background-color", "#00a6cf");
+    }
 
-      // half = (window.innerWidth / 2);
-
-      //  $('#slideleft').animate ({
-      //     left: half.toString()
-      // }, 1500);
-      //console.log("HERE");
     });
 
   $('#source-button').on('click', function() {
+    if ($(this).parent().parent().css ('background-color') == "rgb(238, 238, 238)") {
+      var foo = $('#media-registration').position().left - $('#source-registration').position().left;
+      var lefty = "" + foo + "px";
 
-    var foo = $('#media-registration').position().left - $('#source-registration').position().left;
-    var lefty = "" + foo + "px";
+      console.log(lefty);
 
-    console.log(lefty);
+      $(this).parent().animate (
+          { left: lefty }, 
+          750
+        );
 
-    $(this).parent().animate (
-        { left: lefty }, 
-        750
-      );
+      $(this).parent().css (
+        "z-index", "10");
 
-    $(this).parent().css (
-      "z-index", "10");
+      $(this).parent().parent().css (
+        "background-color", "#49c51d");
+
+      $(this).css (
+        "cursor", "default");
+
+      // $('.registration.buttons:hover').remove();
+    }
   });
 
   $('#reply_comment').on("keyup", function(){
