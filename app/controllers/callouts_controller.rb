@@ -57,6 +57,21 @@ class CalloutsController < ApplicationController
     respond_to do |format|
       format.js {}
     end
+  end
+
+  def sorted
+    if params[:checkedinterests]
+      @interests = Interest.find(params[:checkedinterests])
+    else
+      @interests = Interest.all
+    end
+
+    @media_callouts = Callout.filter_callouts(@interests).select { |c| c.is_callout? }
+    @story_suggests = Callout.filter_callouts(@interests).select { |c| c.is_suggestion? }
+
+    respond_to do |format|
+      format.js {}
+    end
 
   end
   

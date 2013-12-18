@@ -52,6 +52,48 @@ $(document).ready(function() {
       }
     });
   });
+});
+
+
+$(document).ready(function() {
+  $('input[type=checkbox]').on('click', function(event){
+    var self = $(this),
+        interests_resort = [];
+        
+    // if ( self.is(':checked') ) {
+    //   interests_resort.push($(this).val());
+    // }
+
+    $('input[type=checkbox]:checked').each(function(index, element) {
+      interests_resort.push($(element).val());
+    });
+    
+    $.ajax({
+      url: '/callouts/sorted',
+      dataType: 'script',
+      data: {
+        checkedinterests: interests_resort
+
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // $('#reply_button').on('click', function(event)
   // {
   //   event.preventDefault();
