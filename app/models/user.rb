@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   has_many :interest_connectors, :as => :interestable
   has_many :interests, :through => :interest_connectors
 
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, confirmation: true, :on => :create
+  validates :password_confirmation, presence: true, :on => :create
 
   validates :email, presence: true
   validates :email, uniqueness: true

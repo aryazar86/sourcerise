@@ -26,7 +26,8 @@ class UsersController < ApplicationController
       end
       redirect_to :login, notice: 'User was successfully created'
     else
-      render "new"
+      flash.now[:alert] = "Whoops, try again!"
+      render 'users/register_fail'
     end
   end
 
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       @user.interests = Interest.find(params[:interests])
-      redirect_to callouts_path
+      redirect_to user_path(current_user), notice: "Profile updated successfully!"
     else
       redirect_to edit_user_path
     end
@@ -60,6 +61,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :user_role_id, :bio, :first_name, :last_name, :organization, :location)
   end
-
 
 end

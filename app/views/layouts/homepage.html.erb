@@ -11,7 +11,15 @@
   </head>
 
   <body>
+      <% if flash[:notice] %>
+    <div style="text-align:center" id="notice" data-notice class="alert-box info radius"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div style="text-align:center" id="alert" data-alert class="alert-box warning radius"><%= flash[:alert] %></div>
+  <% end %>
+
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+  
+  <%= javascript_include_tag "application" %>
   </body>
 </html>
