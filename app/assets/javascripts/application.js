@@ -53,6 +53,55 @@ $(document).ready(function() {
     });
   });
 
+});
+
+
+$(document).ready(function() {
+  $('input[type=checkbox]').on('click', function(event){
+    var self = $(this),
+        interests_resort = [];
+        
+    // if ( self.is(':checked') ) {
+    //   interests_resort.push($(this).val());
+    // }
+
+    $('input[type=checkbox]:checked').each(function(index, element) {
+      interests_resort.push($(element).val());
+    });
+    
+    $.ajax({
+      url: '/callouts/sorted',
+      dataType: 'script',
+      data: {
+        checkedinterests: interests_resort
+
+      }
+    });
+  });
+
+
+
+
+  // $('#reply_button').on('click', function(event)
+  // {
+  //   event.preventDefault();
+    
+  //   // var url = $(this).attr("action");
+  //   var data = $(this).serialize();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: 'callouts/replies/create',
+  //     dateType: 'script',
+  //     data: data,
+  //     success: function(result) {
+  //       eval(result);
+  //     }      
+  //   }).done(function (data){
+  //     $("textarea").val("");
+  //   });
+  // });
+
+
   $('#media-button').on('click', function() {
 
     var foo = $('#source-registration').position().left - $('#media-registration').position().left;

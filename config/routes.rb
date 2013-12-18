@@ -2,20 +2,22 @@ Sourcerise::Application.routes.draw do
 
   get "/users/get_interests" => "users#get_interests"
 
+
   get "/callouts/get_messages" => "callouts#get_messages"
   
   resources :user_sessions
   resources :users do
-    :interests
+    resources :interests
   end
 
   resources :callouts do
     resources :replies, :except => [:index]
     resources :interests
-  end
+    collection do
+      get "sorted" => "callouts#sorted", as: :sorted
+    end
 
-  resources :user_sessions
-  resources :users
+  end
 
   root :to => 'homepage#homepage'
 

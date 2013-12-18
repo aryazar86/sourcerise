@@ -39,8 +39,8 @@ class Callout < ActiveRecord::Base
         end
       end
     end
-    filtered_callouts.uniq!
-    filtered_callouts
+    filtered_callouts.uniq
+    # filtered_callouts
   end
 
   

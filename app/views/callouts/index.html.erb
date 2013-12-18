@@ -1,49 +1,12 @@
 <% if current_user.user_role_id == 1 %>
-  <h1> Your Callouts</h1>
-  
-  <div>
-   <% @media_callouts.each do |c| %>
-    <% if current_user.id == c.user_id %>
-      <li><%= link_to c.subject, callout_path(c.id) %>        
-        <% c.interests.each do |i| %>
-          <%= i.name %>
-        <% end %></li>
-    <% end %>
-  <% end %>
-  </div>
-  
-
   <h1>Story Suggestions</h1>
-  
-  <div>
-    <% @story_suggests.each do |s| %>
-      <li><%= link_to s.subject, callout_path(s.id) %>        
-        <% s.interests.each do |i| %>
-          <%= i.name %>
-        <% end %></li>
-    <% end %>
-  </div>
-
+  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %> 
 <% else %>  
-
-  <h1>Your Story Suggestions</h1>
-  <% @story_suggests.each do |s| %>
-    <% if current_user.id == s.user_id %>
-      <li><%= link_to s.subject, callout_path(s.id) %><br/>
-        <% s.interests.each do |i| %>
-          <%= i.name %>
-        <% end %>
-      </li>
-    <% end %>
-  <% end %>
-  
   <h1>Media Callouts</h1>
-    <% @media_callouts.each do |c| %>
-      <li><%= link_to c.subject, callout_path(c.id) %>
-        <% c.interests.each do |i| %>
-          <%= i.name %>
-        <% end %>
-      </li>
-    <% end %>
-  
+  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %>
 <% end %>
+
+<h3>Filter Callouts by Interests</h3>
+<p><%="#{@media_callouts.length} callouts match your interests." %></p>
+
+ <%= render "interests/interests_render" %>
