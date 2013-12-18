@@ -38,6 +38,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+      @user.interests = Interest.find(params[:interests])
       redirect_to callouts_path
     else
       redirect_to edit_user_path

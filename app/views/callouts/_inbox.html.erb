@@ -3,11 +3,17 @@
 <% else %>
   <% messengers = [] %>
   <% @callout.replies.each do |r| %>
-    <% messengers << r.sender unless r.sender == current_user %>
+    <% unless (r.sender == current_user) || (r.sender == nil) %>
+        <% messengers << r.sender %>
+    <% end %>
+  <% end %>
+
+  <% if messengers.sort!.length > 1 %>
+    <% messengers.uniq! %>
   <% end %>
 
   <dl class="tabs vertical" data-tab>
-    <% messengers.compact!.uniq!.sort!.each do |m| %>
+    <% messengers.each do |m| %>
       <dd><a class="messenger" href="#<%=m.id%>" data-id="<%=m.id%>" data-callout="<%=@callout.id%>"><%= m.first_name %></a><dd>
     <% end %>
   </dl>

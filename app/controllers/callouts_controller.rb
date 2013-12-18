@@ -22,7 +22,7 @@ class CalloutsController < ApplicationController
     @callout.user_id = current_user.id
 
     if @callout.save
-     # @callout.interests << Interest.find(params[:interests])
+      @callout.interests << Interest.find(params[:interests])
       redirect_to callouts_path, notice: 'Callout was successfully created'
     else
       render "new"
@@ -34,8 +34,18 @@ class CalloutsController < ApplicationController
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
     @selected_interests = @callout.interests
-    unless is_source? || current_user.id == @callout.user_id
+    unless current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
+    end
+  end
+
+  def update
+    @callout = Callout.find(params[:id])
+    if @callout.update_attributes(callout_params)
+      @callout.interests = Interest.find(params[:interests])
+      redirect_to callout_path(params[:id])
+    else
+      redirect_to edit_callout_path
     end
   end
 
