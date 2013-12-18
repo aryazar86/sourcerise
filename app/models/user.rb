@@ -13,7 +13,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  def is_media?
+    self.user_role_id == 1
+  end
 
+  def is_source?
+    self.user_role_id == 2
+  end
 
 
   def self.filter_users(interested_items)

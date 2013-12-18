@@ -1,0 +1,23 @@
+<% if current_user.user_role_id == 1 %>
+    
+  <div class="calls">
+    <% story_suggests.each do |s| %>
+      <li><%= link_to s.subject, callout_path(s.id) %>        
+        <% s.interests.each do |i| %>
+          <%= i.name %>
+        <% end %></li>
+      
+     
+    <% end %>
+  </div>
+<% else %>  
+  <div class="calls">
+    <% media_callouts.each do |c| %>
+      <li><%= link_to c.subject, callout_path(c.id) %>
+        <% c.interests.each do |i| %>
+          <%= i.name %>
+        <% end %>
+      </li>
+    <% end %>
+  </div>
+<% end %>
