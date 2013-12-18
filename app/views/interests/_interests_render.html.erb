@@ -23,8 +23,10 @@
                 <% else %>
                   <% checked = false %>
                 <% end %>
+                  <div class="one-line">
                   <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
                   <%= label_tag "interest_#{i.id}", i.name %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -41,9 +43,10 @@
         <% else %>
           <% checked = false %>
         <% end %>
-
+        <div class="one-line">
         <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}" %>
         <%= label_tag "interest_#{i.id}", i.name %>
+      </div>
       <% end %>
     <% end %>
   </div>
