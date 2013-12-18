@@ -17,6 +17,8 @@ class Callout < ActiveRecord::Base
 
   accepts_nested_attributes_for :interest_connectors
 
+  mount_uploader :image, ImageUploader
+
   def is_callout?
     self.user_role_id == 1
   end

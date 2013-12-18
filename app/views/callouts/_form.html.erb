@@ -9,6 +9,12 @@
     <%= c.label "#{end_time}" %><br />
     <%= c.datetime_select :deadline %>
   </p>
+
+  <p>
+    <%=c.label :image %>
+    <%=c.file_field :image %>
+  </p>
+
   <p>
     <%= c.label :description %><br />
     <%= c.text_area :description %>
