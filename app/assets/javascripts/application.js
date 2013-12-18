@@ -140,5 +140,27 @@ $(document).ready(function() {
     $(this).parent().css (
       "z-index", "10");
   });
+
+  $('#reply_comment').on("keyup", function(){
+    var remaining = 300 - $(this).val().length;
+    $('.countdown').text(remaining + ' characters remaining.');
+    if(remaining >= 0){
+      $('input[type="submit"]').removeAttr('disabled');
+    } else {
+      $('input[type="submit"]').attr('disabled', 'disabled');
+    }
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
+
 
