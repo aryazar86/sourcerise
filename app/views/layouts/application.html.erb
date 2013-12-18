@@ -61,9 +61,9 @@
     <div style="text-align:center" id="alert" data-alert class="alert-box warning radius"><%= flash[:alert] %></div>
   <% end %>
 
-  <div class="row">
     <div class="small-12 large-centered columns">
       <%= yield %>
+    </div>
 
     <%= javascript_include_tag "application" %>
   </body>

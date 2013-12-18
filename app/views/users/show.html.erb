@@ -2,10 +2,11 @@
     <h3><%= link_to "Edit your profile",  edit_user_path %></h3>
     <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
 
-    <h3><%= @user.email %></h3>
+    <h3><%= image_tag 'download.jpeg', size:"30" %><%= @user.email %></h3>
+    <h3><%= image_tag 'place-512.png', size:"30" %><%= @user.location %></h3>
+
     <h3><%= @user.bio %></h3>
-    <h3>Organization: <%= @user.organization %></h3>
-    <h3><img src="../../assets/images/media.png"><%= @user.location %></h3>
+    <h3><%= @user.organization %></h3>
 
     <h3>Interests:
     <% @user.interests.each do |i| %>
