@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @callouts = Callout.all.map { |c| c if @user.id == c.user_id }
 
-    unless @user == current_user || current_user.user_role_id == 1
+    unless @user == current_user || (current_user.user_role_id == 1 && @user.user_role_id == 2)
       redirect_to :login, notice: 'You may only view your own profile'
     end
   end

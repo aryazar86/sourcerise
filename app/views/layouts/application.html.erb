@@ -15,7 +15,11 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><%= link_to "SourceRise", root_url %></h1>
+      <% if current_user %>
+        <h1> <%= link_to "SourceRise", user_path(current_user) %></h1>
+      <% else %>
+        <h1><%= link_to "SourceRise", root_url %></h1>
+      <% end %>
     </li>
   </ul>
 
