@@ -21,7 +21,9 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(user_params)
     if @user.save
-      @user.interests << Interest.find(params[:interests])
+      if params[:interests] != nil
+        @user.interests << Interest.find(params[:interests])
+      end
       redirect_to :login, notice: 'User was successfully created'
     else
       render "new"

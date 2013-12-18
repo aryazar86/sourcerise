@@ -46,7 +46,7 @@
         <% else %>
           <li><%= link_to "View Media Callouts", callouts_path %> </li>
           <li><%= link_to "Suggest a Story", new_callout_path %></li>
-        <% end %>
+        <% end %>2
       <% end %>
     </ul>
 
@@ -61,6 +61,8 @@
     <div style="text-align:center" id="alert" data-alert class="alert-box warning radius"><%= flash[:alert] %></div>
   <% end %>
 
+  <div class="row">
+    <div class="small-12 large-centered columns">
       <%= yield %>
 
     <%= javascript_include_tag "application" %>

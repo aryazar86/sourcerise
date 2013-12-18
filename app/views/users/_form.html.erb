@@ -1,37 +1,5 @@
 <%= form_for @user do |f| %>
 
-  <div class="field"><p>I am a</p>
-    <%= f.radio_button(:user_role_id, 1) %>
-    <%= f.label(:user_role_id_1, "Media") %>
-    <%= f.radio_button(:user_role_id, 2) %>
-    <%= f.label(:user_role_id_2, "Source") %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-     <%= f.label :password %><br />
-     <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-     <%= f.label :password_confirmation %><br />
-     <%= f.password_field :password_confirmation %>
-  </div>
-
   <div class="field">
     <%= f.label :organization %><br />
     <%= f.text_field :organization %>
