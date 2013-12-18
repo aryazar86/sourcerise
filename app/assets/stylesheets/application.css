@@ -53,3 +53,16 @@
   display: block;
 
 }
+
+.left-col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+  background-color: #ADE2F0;
+  box-shadow: 10px 0px 5px #888888;
+
+}
+
+.right-col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
