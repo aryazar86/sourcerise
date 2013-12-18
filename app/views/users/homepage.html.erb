@@ -1,0 +1,32 @@
+<div class="row">
+      <%= image_tag 'logo.png', :class => "registration" %>
+      <h3 style="text-align:center">ARE YOU...<h3>
+</div>
+
+<div class="row registration-panel">
+  <div id="media-registration" class="small-6 columns" >
+    <div id="media-button" class="registration buttons">
+      <%= image_tag 'media.png' %>
+      <h4 style="text-align:center">MEDIA</h4>
+      <h5 style="text-align:center"> looking for expert,<br/>on-the-ground source?</h5>
+    </div>
+  </div>
+    <div id="source-registration" class="small-6 columns">
+      <div id="source-button" class="registration buttons">
+      <%= image_tag 'source.png'%>
+      <h4 style="text-align:center">A SOURCE</h4>
+      <h5 style="text-align:center"> looking to take your expertise to the media?</h5>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <h3 style="text-align:center">Already registered?</h3>
+  <div class="small-5 small-centered columns">
+   <a href="#" data-reveal-id="login-modal" class="button" id="login">Login</a></div>
+
+   <div id="login-modal" class="reveal-modal" data-reveal>
+    <h3>Login</h3><hr/>
+    <%= render :partial => "user_sessions/form" %>
+  </div>
+</div>

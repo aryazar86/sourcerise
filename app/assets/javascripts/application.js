@@ -52,24 +52,44 @@ $(document).ready(function() {
       }
     });
   });
-  // $('#reply_button').on('click', function(event)
-  // {
-  //   event.preventDefault();
-    
-  //   // var url = $(this).attr("action");
-  //   var data = $(this).serialize();
-  //   $.ajax({
-  //     type: "POST",
-  //     url: 'callouts/replies/create',
-  //     dateType: 'script',
-  //     data: data,
-  //     success: function(result) {
-  //       eval(result);
-  //     }      
-  //   }).done(function (data){
-  //     $("textarea").val("");
-  //   });
-  // });
 
+  $('#media-button').on('click', function() {
+
+    var foo = $('#source-registration').position().left - $('#media-registration').position().left;
+    var lefty = "" + foo + "px";
+
+    console.log(lefty);
+
+    $(this).parent().animate (
+        { left: lefty }, 
+        750
+      );
+
+    $(this).parent().css (
+      "z-index", "10");
+
+      // half = (window.innerWidth / 2);
+
+      //  $('#slideleft').animate ({
+      //     left: half.toString()
+      // }, 1500);
+      //console.log("HERE");
+    });
+
+  $('#source-button').on('click', function() {
+
+    var foo = $('#media-registration').position().left - $('#source-registration').position().left;
+    var lefty = "" + foo + "px";
+
+    console.log(lefty);
+
+    $(this).parent().animate (
+        { left: lefty }, 
+        750
+      );
+
+    $(this).parent().css (
+      "z-index", "10");
+  });
 });
 
