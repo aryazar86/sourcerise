@@ -91,6 +91,10 @@
   transition: opacity 1s;
 }
 
+#media-button, #source-button {
+  opacity: 1;
+  transition: opacity 1s;
+}
 .name {
   width:50%;
 }
@@ -102,7 +106,8 @@
   padding: 5px;
   margin: 5px;
   background-color: #D6F0F8;
-  float: right;
+  width:50%;
+  text-align: center;
 }
 .interests {
   padding: 5px;

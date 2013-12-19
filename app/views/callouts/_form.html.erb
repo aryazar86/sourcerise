@@ -1,31 +1,19 @@
 <h1><%= header %></h1>
 
 <%= form_for @callout do |c| %>
-  <p>
-    <%= c.label :subject %><br />
-    <%= c.text_field :subject %>
-  </p>
-  <p>
-    <%= c.label "#{end_time}" %><br />
-    <%= c.datetime_select :deadline %>
-  </p>
-
-  <p>
-    <%=c.label :image %>
-    <%=c.file_field :image %>
-  </p>
-
-  <p>
-    <%= c.label :description %><br />
-    <%= c.text_area :description %>
-  </p>
-
-   <%= render "interests/interests_render" %>
-  <%# @interests.each do |i| %>
-    <%#= check_box_tag 'interests[]', i.id, false, :id => "interest_#{i.id}" %>
-    <%#= label_tag "interest_#{i.id}", i.name %>
-  <%# end %>  
-
-  <%= c.submit "Submit" %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= c.label :subject %><br />
+      <%= c.text_field :subject %>
+      <%= c.label "#{end_time}" %><br />
+      <%= c.datetime_select :deadline %>
+      <%= c.label :description %><br />
+      <%= c.text_area :description %>
+      <%=c.label :image %>
+      <%=c.file_field :image %>
+      <%= render "interests/interests_render" %> 
+      <%= c.submit "Submit" %>
+    </div>
+  </div>
 
 <% end %>

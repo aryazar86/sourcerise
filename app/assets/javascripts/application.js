@@ -19,6 +19,20 @@ $(function(){ $(document).foundation(); });
 
 $(document).ready(function() {
 
+  heightify();
+
+  function heightify() {
+    height = "" + document.documentElement.clientHeight
+    console.log(height)
+    $('.inner-wrap').css (
+      'height', height
+      )
+  }
+
+  $(window).on('resize', function() {
+    heightify();
+  });
+
   $("input[name='all']").click(function() { 
     var parent_to_check = $(this).attr('value');
     allInterests = [];
@@ -80,29 +94,6 @@ $(document).ready(function() {
     });
   });
 
-
-
-
-  // $('#reply_button').on('click', function(event)
-  // {
-  //   event.preventDefault();
-    
-  //   // var url = $(this).attr("action");
-  //   var data = $(this).serialize();
-  //   $.ajax({
-  //     type: "POST",
-  //     url: 'callouts/replies/create',
-  //     dateType: 'script',
-  //     data: data,
-  //     success: function(result) {
-  //       eval(result);
-  //     }      
-  //   }).done(function (data){
-  //     $("textarea").val("");
-  //   });
-  // });
-
-
   $('#media-button').on('click', function() {
     if ($(this).parent().parent().css ('background-color') == "rgb(238, 238, 238)") {
       var foo = $('#source-registration').position().left - $('#media-registration').position().left;
@@ -126,6 +117,8 @@ $(document).ready(function() {
 
       $('#title').fadeIn().text('Great, please register!');
 
+      $('#source-button').css (
+        "opacity", "0")
     }
 
     });
@@ -156,6 +149,8 @@ $(document).ready(function() {
 
       $('#title').fadeIn().text('Great, please register!');
 
+      $('#media-button').css (
+        "opacity", "0")
     }
   });
 
