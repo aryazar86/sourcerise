@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.callout_headline{
+  text-align: center;
+}
+
 aside h2{
   color: #FFFFFF;
 }
@@ -12,7 +16,9 @@ aside dd{
   width: 100%;
 
 }
-
+aside p{
+  color: white;
+}
 aside input[name='interests[]']{
   clear: left;
 }
@@ -24,6 +30,7 @@ aside#issues.content{
 div content{
   background: #fff;
   color: #222222
+
 }
 
 .one-line{

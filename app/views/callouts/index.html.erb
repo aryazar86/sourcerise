@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 <div class="off-canvas-wrap">
   <div class="inner-wrap">
 
@@ -12,8 +7,8 @@
 
     <!-- Off Canvas Menu -->
     <aside class="left-off-canvas-menu">
-        <!-- whatever you want goes here -->
-        <%= render "interests/interests_render" %>
+      <!-- whatever you want goes here -->
+      <%= render "interests/interests_render" %>
     </aside>
 
     <!-- main content goes here -->
@@ -21,12 +16,12 @@
   <h1>Story Suggestions</h1>
   <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %> 
   
-<p><%="#{@story_suggests.length} callouts match your interests." %></p>
+
 <% else %>
 
-  <h1>Media Callouts</h1>
+  <h1 class="callout_headline">Media Callouts</h1>
   <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %>
-  <p><%="#{@media_callouts.length} callouts match your interests." %></p>
+  
   
 <% end %>
 
