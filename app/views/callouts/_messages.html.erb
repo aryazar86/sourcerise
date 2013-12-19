@@ -2,7 +2,15 @@
   <div class="content active" id="<%=messenger.id%>">
   <% callout.replies.each do |r| %>
     <% if (messenger == r.sender) || (messenger.id == r.receiver_id) %>
-      <p><%=r.comment%> <em>by <%= r.sender.first_name %> on <%=r.created_at%></em>
+      <p><%=r.comment%> <em>by 
+        <% if r.sender.is_source? %>
+          <%= link_to r.sender.first_name, user_path(r.sender.id) %> 
+        <% elsif r.sender == current_user %>  
+          <%= r.sender.first_name %>
+        <% else %>
+          a media user from <%= r.sender.location %>
+        <% end %>
+        on <%=r.created_at%></em></p>
     <% end %>
   <% end %>
     <%= form_for [callout, reply], :remote => true do |f| %>
