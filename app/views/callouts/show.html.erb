@@ -1,4 +1,9 @@
 <h1>Callout out out</h1>
+<% if @callout.user.is_media? %>
+  <p>By a media user from <%= @callout.user.location %></p>
+<% else %>  
+  <p>By <%= @callout.user.first_name %></p>
+<% end %>
 <p>Subject: <%= @callout.subject %></p>
 <p>Deadline: <%= @callout.deadline %></p>
 <p>Description: <%= @callout.description %> </p>
