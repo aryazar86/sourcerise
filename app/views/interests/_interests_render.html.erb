@@ -1,29 +1,35 @@
-<h4>What are you interested in?</h4>
-<% if current_user.user_role_id == 1 %>
-  <% if @story_suggests %>
-  <p><%="#{@story_suggests.length} callouts match your interests." %></p>
-  <% end %>
-<% else %>
-  <% if @media_callouts %>
-  <p><%="#{@media_callouts.length} callouts match your interests." %></p>
-  <% end %>
-<% end %>
-<dl class="tabs" data-tab>
-  <dd class="active"><a href="#issues">Issues</a></dd>
-  <dd><a href="#locations">Locations</a></dd>
-  <dd><a href="#mediatypes">Media Types</a></dd>
-</dl>
+<h4>Choose your Interests</h4>
 
-<div class="tabs-content">
+<dl class="accordion" data-accordion>
+  <dd class="active"><a href="#issues">Issues</a>
+    <div class="content active" id="issues">
+      <% @issue_interests.each do |i| %>
+        <% if i.parent_id == 0 %>
+          <% if @selected_interests.include?(i) %>
+            <% checked = true %>
+          <% else %>
+            <% checked = false %>
+          <% end %>
+          <div class="one-line">
+          <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}" %>
+          <%= label_tag "interest_#{i.id}", i.name %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </dd>
+
+  <dd><a href="#locations">Locations</a>
 
   <div class="content" id="locations">
       <% main_parents = @location_interests.select { |i| i if i.parent_id == 0 } %>
       <% main_parents.each do |p| %>
-        <h3 id="<%=p.id%>" ><%=p.name%></a>
-          <% children = @location_interests.select { |i| i if i.parent_id == p.id} %></h3><hr />
+        <h4 id="<%=p.id%>" ><%=p.name%></a>
+          <% children = @location_interests.select { |i| i if i.parent_id == p.id} %></h4>
           <% if !children.empty? %>
             <div id="panel<%="#{p.id}"%>" class="content active" >
-              <%= check_box_tag 'all', p.id, false, :id => "all" %>
+              <%= check_box_tag 'all', p.id, false, :id => "all", :class => "checkboxes" %>
                 <%= label_tag "all", "All" %>
               <% children.each do |i| %>
                 <% if @selected_interests.include?(i) %>
@@ -32,28 +38,16 @@
                   <% checked = false %>
                 <% end %>
                   <div class="one-line">
-                  <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
+                  <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :class => "checkboxes", :data => {"parent_id" => "#{p.id}" } %>
                   <%= label_tag "interest_#{i.id}", i.name %>
                 </div>
               <% end %>
             </div>
           <% end %>
       <% end %>
-  </div>
+    </div>
+  </dd>
 
-  <div class="content active" id="issues">
-    <% @issue_interests.each do |i| %>
-      <% if i.parent_id == 0 %>
-        <% if @selected_interests.include?(i) %>
-          <% checked = true %>
-        <% else %>
-          <% checked = false %>
-        <% end %>
-        <div class="one-line">
-        <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}" %>
-        <%= label_tag "interest_#{i.id}", i.name %>
-      </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+  <dd><a href="#mediatypes">Media Types</a></dd>
+
+</dl>

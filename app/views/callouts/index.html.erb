@@ -7,8 +7,20 @@
 
     <!-- Off Canvas Menu -->
     <aside class="left-off-canvas-menu">
-      <!-- whatever you want goes here -->
-      <%= render "interests/interests_render" %>
+      <div style="margin-left:10px; margin-right:10px">
+        <hr/>
+        <% if current_user.user_role_id == 1 %>
+          <% if @story_suggests %>
+          <div><%="#{@story_suggests.length} callouts match your interests." %></div>
+          <% end %>
+        <% else %>
+          <% if @media_callouts %>
+          <div><%="#{@media_callouts.length} callouts match your interests." %></div>
+          <% end %>
+        <% end %>
+        <hr/>
+        <%= render "interests/interests_render" %>
+      </div>
     </aside>
 
     <!-- main content goes here -->

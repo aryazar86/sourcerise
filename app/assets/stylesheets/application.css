@@ -55,19 +55,15 @@
 }
 
 .left-col {
-  margin-bottom: -99999px;
-  padding-bottom: 99999px;
   background-color: #ADE2F0;
   box-shadow: 10px 0px 5px #888888;
 }
 .lowerleft {
-  padding: 40px;
+  padding: 20px;
 
 }
 
 .right-col {
-  margin-bottom: -99999px;
-  padding-bottom: 99999px;
 }
 #new_user {
   position: relative;
@@ -109,13 +105,25 @@
   width:50%;
   text-align: center;
 }
+
 .interests {
   padding: 5px;
   border-style: solid;
-  border-radius: 15px;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 2px 2px 5px #888888;
   float:left;
 }
 .interests li {
   list-style-type: none;
+}
+
+input[type="checkbox"].checkboxes {
+  margin: 0; important!
+}
+
+.accordion .content .active {
+  padding-top: 0;
+}
+
+.large-8.columns.right-col {
+  padding:20px;
 }

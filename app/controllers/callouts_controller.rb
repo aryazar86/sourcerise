@@ -82,7 +82,6 @@ class CalloutsController < ApplicationController
     respond_to do |format|
       format.js {}
     end
-
   end
   
   private
