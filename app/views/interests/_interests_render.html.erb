@@ -1,13 +1,5 @@
 <h4>What are you interested in?</h4>
-<% if current_user.user_role_id == 1 %>
-  <% if @story_suggests %>
-  <p><%="#{@story_suggests.length} callouts match your interests." %></p>
-  <% end %>
-<% else %>
-  <% if @media_callouts %>
-  <p><%="#{@media_callouts.length} callouts match your interests." %></p>
-  <% end %>
-<% end %>
+<%= render :partial => "callouts_count", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %>
 <dl class="tabs" data-tab>
   <dd class="active"><a href="#issues">Issues</a></dd>
   <dd><a href="#locations">Locations</a></dd>
@@ -32,7 +24,11 @@
                   <% checked = false %>
                 <% end %>
                   <div class="one-line">
-                  <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :data => {"parent_id" => "#{p.id}" } %>
+                  <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", 
+                        :data => {
+                          "parent-id" => "#{p.id}"
+                        } 
+                  %>
                   <%= label_tag "interest_#{i.id}", i.name %>
                 </div>
               <% end %>
