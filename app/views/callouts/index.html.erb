@@ -11,11 +11,11 @@
         <hr/>
         <% if current_user.user_role_id == 1 %>
           <% if @story_suggests %>
-          <div><%="#{@story_suggests.length} callouts match your interests." %></div>
+          <div class= "count"><%="#{@story_suggests.length} callouts match the selected interests." %></div>
           <% end %>
         <% else %>
           <% if @media_callouts %>
-          <div><%="#{@media_callouts.length} callouts match your interests." %></div>
+          <div class="count"><%="#{@media_callouts.length} callouts match the selected interests." %></div>
           <% end %>
         <% end %>
         <hr/>
