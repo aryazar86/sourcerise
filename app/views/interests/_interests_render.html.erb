@@ -1,3 +1,4 @@
+
 <h4>Choose your Interests</h4>
 
 <dl class="accordion" data-accordion>
@@ -17,7 +18,6 @@
         <% end %>
       <% end %>
     </div>
-
   </dd>
 
   <dd><a href="#locations">Locations</a>
@@ -38,7 +38,9 @@
                   <% checked = false %>
                 <% end %>
                   <div class="one-line">
+
                   <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}", :class => "checkboxes", :data => {"parent_id" => "#{p.id}" } %>
+
                   <%= label_tag "interest_#{i.id}", i.name %>
                 </div>
               <% end %>

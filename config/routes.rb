@@ -15,6 +15,7 @@ Sourcerise::Application.routes.draw do
     resources :interests
     collection do
       get "sorted" => "callouts#sorted", as: :sorted
+      get "callouts_count" => "callouts#count", as: :count
     end
 
   end

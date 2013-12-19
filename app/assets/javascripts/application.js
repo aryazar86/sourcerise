@@ -74,10 +74,6 @@ $(document).ready(function() {
   $('input[type=checkbox]').on('click', function(event){
     var self = $(this),
         interests_resort = [];
-        
-    // if ( self.is(':checked') ) {
-    //   interests_resort.push($(this).val());
-    // }
 
     $('input[type=checkbox]:checked').each(function(index, element) {
       interests_resort.push($(element).val());
@@ -88,10 +84,31 @@ $(document).ready(function() {
       dataType: 'script',
       data: {
         checkedinterests: interests_resort
-
       }
     });
   });
+
+  $('input[type=checkbox]').on('click', function(event){
+      var self = $(this),
+        interests_resort = [];
+    $('input[type=checkbox]:checked').each(function(index, element) {
+      interests_resort.push($(element).val());
+    });
+
+    var url = "/callouts/callouts_count";
+
+    $.ajax({
+      url: url,
+      dataType: 'script',
+      data: {
+        checkedinterests: interests_resort
+      }
+    });
+  });
+
+
+
+
 
   $('#media-button').on('click', function() {
     if ($(this).parent().parent().css ('background-color') == "rgb(238, 238, 238)") {

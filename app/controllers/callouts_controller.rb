@@ -83,7 +83,22 @@ class CalloutsController < ApplicationController
       format.js {}
     end
   end
+
+  def count
+    if params[:checkedinterests]
+      @interests = Interest.find(params[:checkedinterests])
+    else
+      @interests = Interest.all
+    end
+
+    @media_callouts = Callout.filter_callouts(@interests).select { |c| c.is_callout? }
+    @story_suggests = Callout.filter_callouts(@interests).select { |c| c.is_suggestion? }
   
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   private
   def callout_params
     params.require(:callout).permit(:subject, :deadline, :description, :user_id, :image)
