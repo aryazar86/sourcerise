@@ -1,19 +1,21 @@
-<h1><%= header %></h1>
+<div class="row">
+  <div class="small-8 columns">
+    <h1><%= header %></h1>
 
-<%= form_for @callout do |c| %>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= c.label :subject %><br />
+    <%= form_for @callout do |c| %>
+      <%= c.label :subject %>
       <%= c.text_field :subject %>
-      <%= c.label "#{end_time}" %><br />
-      <%= c.datetime_select :deadline %>
-      <%= c.label :description %><br />
-      <%= c.text_area :description %>
       <%=c.label :image %>
       <%=c.file_field :image %>
-      <%= render "interests/interests_render" %> 
-      <%= c.submit "Submit" %>
-    </div>
+      <%= c.label "#{end_time}" %>
+      <%= c.datetime_select :deadline %>
+      <%= c.label :description %>
+      <%= c.text_area :description %>
+      <%= c.submit "Submit", :class =>"button" %>
+
+  </div>
+  <div class="small-4 columns">
+      <%= render "interests/interests_render" %>
   </div>
 
 <% end %>

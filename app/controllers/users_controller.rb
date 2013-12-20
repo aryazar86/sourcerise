@@ -33,9 +33,15 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
-    @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
-    @selected_interests = @user.interests
+
+    if @user == current_user
+      @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
+      @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+      @selected_interests = @user.interests
+    else
+      redirect_to user_path(current_user), notice: 'You may only edit your own profile'
+    end
+
   end
 
   def update

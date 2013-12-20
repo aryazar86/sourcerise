@@ -27,11 +27,10 @@ $(document).ready(function() {
     $('.inner-wrap').css (
       'height', height
       )
-  }
 
-  $(window).on('resize', function() {
-    heightify();
-  });
+    $('.lowerleft').css (
+      'height', height )
+  }
 
   $("input[name='all']").click(function() { 
     var parent_to_check = $(this).attr('value');
