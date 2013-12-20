@@ -38,7 +38,8 @@ class UsersController < ApplicationController
       if params[:interests] != nil
         @user.interests << Interest.find(params[:interests])
       end
-      redirect_to :login, notice: 'User was successfully created'
+      auto_login(@user)
+      redirect_to :root, notice: 'User was successfully created'
     else
       flash.now[:alert] = "Whoops, try again!"
       render 'users/register_fail'
