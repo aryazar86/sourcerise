@@ -3,6 +3,7 @@
     <div class="lowerleft">
       <h2 styl="float:left"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
 
+      <div class="info" id="profile_image_container"><%= image_tag @user.image, size:"175" %></div>
       <div class="info"><%= image_tag 'email.png', size:"30" %> <%= @user.email %></div>
       <div class="info"><%= image_tag 'place.png', size:"25" %> <%= @user.location %></div>
       <div class="info"><%= image_tag 'work.png', size:"25" %> <%=@user.organization%></div>
