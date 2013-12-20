@@ -50,6 +50,22 @@
     </div>
   </dd>
 
-  <dd><a href="#mediatypes">Media Types</a></dd>
+  <dd><a href="#mediatypes">Media Types</a>
+    <div class="content" id="mediatypes">
+      <% @medium_interests.each do |i| %>
+        <% if i.parent_id == 0 %>
+          <% if @selected_interests.include?(i) %>
+            <% checked = true %>
+          <% else %>
+            <% checked = false %>
+          <% end %>
+          <div class="one-line">
+            <%= check_box_tag 'interests[]', i.id, checked, :id => "interest_#{i.id}" %>
+            <%= label_tag "interest_#{i.id}", i.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </dd>
 
 </dl>

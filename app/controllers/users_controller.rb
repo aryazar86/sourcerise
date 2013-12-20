@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     @user = User.new
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @medium_interests = Interest.all.map { |i| i if i.topic== "Medium"}.compact
+
     @selected_interests = []
   end
 
@@ -51,6 +53,8 @@ class UsersController < ApplicationController
     if @user == current_user
       @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
       @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+      @medium_interests = Interest.all.map { |i| i if i.topic== "Medium"}.compact
+
       @selected_interests = @user.interests
     else
       redirect_to user_path(current_user), notice: 'You may only edit your own profile'

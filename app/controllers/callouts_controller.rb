@@ -6,6 +6,7 @@ class CalloutsController < ApplicationController
   
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @medium_interests = Interest.all.map { |i| i if i.topic == "Medium"}.compact
     @selected_interests = current_user.interests
     
   end
@@ -25,8 +26,9 @@ class CalloutsController < ApplicationController
     @callout = Callout.new
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
-    @selected_interests = []
+    @medium_interests = Interest.all.map { |i| i if i.topic == "Medium"}.compact
 
+    @selected_interests = []
     
     @interested_media = User.filter_users(@selected_interests).select{|u| u.is_media?}
     @interested_sources = User.filter_users(@selected_interests).select{|u| u.is_source?}
@@ -50,6 +52,8 @@ class CalloutsController < ApplicationController
     @callout = Callout.find(params[:id])
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
+    @medium_interests = Interest.all.map { |i| i if i.topic == "Medium"}.compact
+
     @selected_interests = @callout.interests
     unless current_user.id == @callout.user_id
       redirect_to callouts_path, notice: 'Sorry, you do not have access to this callout'
