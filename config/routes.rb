@@ -10,6 +10,8 @@ Sourcerise::Application.routes.draw do
     resources :interests
   end
 
+get "callout/users_count" => "callouts#users_count"
+
   resources :callouts do
     resources :replies, :except => [:index]
     resources :interests

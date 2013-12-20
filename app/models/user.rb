@@ -27,20 +27,21 @@ class User < ActiveRecord::Base
   end
 
 
+
   def self.filter_users(interested_items)
     u = User.all
-    filtered_callouts = []
+    filtered_users = []
 
     interested_items.each do |interest_in_question|
       u.each do |x|
         x.interests.each do |y|
           if y.name.include?(interest_in_question.name)
-            filtered_callouts << x
+            filtered_users << x
           end
         end
       end
     end
-    filtered_callouts.uniq!
-    filtered_callouts
+    filtered_users.uniq
+    
   end
 end
