@@ -30,7 +30,16 @@ UserRole.create!(
 #   :description => "This is the fourth sample callout description",
 #   :user_id => 1
 #   )
-issue = [["Human Rights", 0], ["Enviroment", 0], ["Poverty", 0], ["Education", 0], ["Health", 0], ["Women", 0], ["Microfinance", 0], ["Disability Inclusion", 0], ["Refugees", 0]]
+issue = [
+  ["Human Rights", 0], 
+  ["Enviroment", 0], 
+  ["Poverty", 0], ["Education", 0], 
+  ["Health", 0], 
+  ["Women", 0], 
+  ["Microfinance", 0], 
+  ["Disability Inclusion", 0], 
+  ["Refugees", 0]
+]
 
 location = [
    ["North America", 0],
@@ -44,7 +53,7 @@ location = [
    ["Mexico", 1], 
    ["Central America", 2],
    ["Brazil", 2],
-   ["Hispanic America", 2]
+   ["Hispanic America", 2],
    ["Northern Africa", 3], 
    ["Western Africa", 3], 
    ["Eastern Africa", 3], 
@@ -66,7 +75,15 @@ location = [
    ["Australia and New Zealand", 6]
 ]
 
-medium = [["Article", 0], ["Quote", 0], ["Video", 0], ["TV Appearance", 0], ["Radio Appearance", 0], ["Photo", 0], ["Travel to the Field", 0]]
+medium = [
+  ["Article", 0], 
+  ["Quote", 0], 
+  ["Video", 0], 
+  ["TV Appearance", 0], 
+  ["Radio Appearance", 0], 
+  ["Photo", 0], 
+  ["Travel to the Field", 0]
+]
 
 location.each do |l|
   Interest.create!(
