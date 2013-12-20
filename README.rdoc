@@ -1,11 +1,12 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A product of the collaboration between Arya Iranpour, Graham Lavender, and Matt Lackey, this repository houses the app for Sourcerise, which aims to improve the world by providing a platform for journalists and experts on the ground in the developing world to get in contact. This platform will provide journalists with better access to better information from people with firsthand experience and allow those experts to be heard by giving them the power to suggest stories to the media.
 
-Things you may want to cover:
+The app itself served as the final project for the three contributors at Bitmaker Labs.
 
-* Ruby version
+Important things to know:
+
+* Ruby version: 2.0.0
 
 * System dependencies
 
