@@ -28,17 +28,19 @@ class User < ActiveRecord::Base
 
 
   def self.filter_users(interested_items)
-    all_users = User.all
+    u = User.all
+    filtered_callouts = []
 
-    filtered_callouts = interested_items.map do |interest_in_question|
-      all_users.each do |user|
-        user.interests.each do |interest|
-          if interest.name.include?(interest_in_question.name)
-            user
+    interested_items.each do |interest_in_question|
+      u.each do |x|
+        x.interests.each do |y|
+          if y.name.include?(interest_in_question.name)
+            filtered_callouts << x
           end
         end
       end
     end
-    filtered_callouts.uniq
+    filtered_callouts.uniq!
+    filtered_callouts
   end
 end

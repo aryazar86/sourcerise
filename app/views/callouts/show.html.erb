@@ -9,7 +9,7 @@
     <% else %>  
       <h5><b>By:</b> <%= @callout.user.first_name %></h5>
     <% end %>
-    <h5><b>Time Left:</b> <%= distance_of_time_in_words(@callout.deadline, Time.now) %></h5>
+    <h5><b>Time Left:</b> <%= distance_of_time_in_words(@callout.deadline.in_time_zone("Islamabad"), Time.now) %></h5>
     <h5><b>Interests:</b> <% @callout.interests.each do |i| %><%= i.name %> | <% end %></h5>
     <p><%= @callout.description %> </p>
   </div>
