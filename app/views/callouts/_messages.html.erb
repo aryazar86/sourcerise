@@ -15,7 +15,7 @@
   <% end %>
     <%= form_for [callout, Reply.new], :remote => true do |f| %>
       <div class="field">
-        <%= f.label :comment%><br />
+        <p>Would you like to make a reply?</p>
         <%= f.text_area :comment %>
         <%= f.hidden_field :sender_id, :value => current_user.id %>
         <%= f.hidden_field :receiver_id, :value => messenger.id %>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Reply", :id => "reply_button" %>
+        <%= f.submit "Reply", :id => "reply_button", :class => "button" %>
         <span class='countdown'>300 characters remaning.</span>
       </div>
     <% end %>

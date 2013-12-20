@@ -1,18 +1,22 @@
-<h1>Callout out out</h1>
-
-<% if @callout.user.is_media? %>
-  <p>By a media user from <%= @callout.user.location %></p>
-<% else %>  
-  <p>By <%= @callout.user.first_name %></p>
-<% end %>
-<p>Subject: <%= @callout.subject %></p>
-<p>Deadline: <%= @callout.deadline %></p>
-<p>Description: <%= @callout.description %> </p>
-
-<h3>Replies</h3>
-
-<% if current_user == @callout.user %>
-  <%= render :partial => "inbox", :object => @callout %>
-<% else %>
-  <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => @callout.user, :reply => @reply } %>
-<% end %>
+<div id="image_container"><%= image_tag @callout.image, :id => "main_image" %></div>
+<div class="row">
+  <div class="large-6 columns">
+    <h3><b>Callout: <%= @callout.subject %></b></h3>
+    <% if @callout.user.is_media? %>
+      <h5><b>By:</b> Media Member from <%= @callout.user.location %></h5>
+    <% else %>  
+      <h5><b>By:</b> <%= @callout.user.first_name %></h5>
+    <% end %>
+    <h5><b>Time Left:</b> <%= distance_of_time_in_words(@callout.deadline, Time.now) %></h5>
+    <h5><b>Interests:</b> <% @callout.interests.each do |i| %><%= i.name %> | <% end %></h5>
+    <p><%= @callout.description %> </p>
+  </div>
+  <div class="large-6 columns">
+    <h3>Replies</h3>
+    <% if current_user == @callout.user %>
+      <%= render :partial => "inbox", :object => @callout %>
+    <% else %>
+      <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => @callout.user, :reply => @reply } %>
+    <% end %>
+  </div>
+</div>
