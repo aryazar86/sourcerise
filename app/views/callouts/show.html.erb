@@ -14,7 +14,7 @@
     <p><%= @callout.description %> </p>
   </div>
   <div class="large-6 columns">
-    <h3>Replies</h3>
+    <h3><b>Replies</b></h3>
     <% if current_user == @callout.user %>
       <%= render :partial => "inbox", :object => @callout %>
     <% else %>
