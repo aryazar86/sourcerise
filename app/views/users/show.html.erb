@@ -25,9 +25,9 @@
         <%= link_to (callout_path(c.id)) do %>
           <div class="callout-display">
             <%= image_tag(c.image) %>
-          <p><%= c.subject %></p>
+          <p><%= c.subject.truncate(20) %></p>
           <% c.replies.each do |r| %>
-            <% if r.receiver_id == current_user.id && r.is_read ==false && c.user == current_user %>
+            <% if r.receiver_id == current_user.id && r.is_read == false && c.user == current_user %>
               <small>New messages!</small>
             <% end %>
           <% end %>

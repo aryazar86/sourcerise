@@ -1,9 +1,9 @@
 <% if current_user.user_role_id == 1 %>
   <% if story_suggests %>
-  <p class="count"><%="#{story_suggests.length} callouts match your interests." %></p>
+  <p class="count"><%="#{story_suggests.length} callouts match the selected interests." %></p>
   <% end %>
 <% else %>
   <% if media_callouts %>
-  <p class="count"><%="#{media_callouts.length} callouts match your interests." %></p>
+  <p class="count"><%="#{media_callouts.length} callouts match the selected interests." %></p>
   <% end %>
 <% end %>

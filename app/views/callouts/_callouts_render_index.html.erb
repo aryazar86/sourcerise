@@ -7,7 +7,7 @@
         <% if s.image %>
           <%= image_tag(s.image) %>
         <% end %>
-        <p><%= s.subject %></p>
+        <p><%= s.subject.truncate(20) %></p>
         </div>
       <% end %>      
     <% end %>
@@ -23,7 +23,7 @@
         <% if c.image %>
           <%= image_tag (c.image) %>
         <% end %>
-        <p><%= c.subject %></p>
+        <p><%= c.subject.truncate(20) %></p>
         </div>
         <% end %>
       
