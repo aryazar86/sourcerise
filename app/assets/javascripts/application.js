@@ -57,6 +57,7 @@ $(document).ready(function() {
     var self = $(this),
         interests_resort = [];
 
+
     $('input[type=checkbox]:checked').each(function(index, element) {
       interests_resort.push($(element).val());
     });
@@ -84,6 +85,28 @@ $(document).ready(function() {
       dataType: 'script',
       data: {
         checkedinterests: interests_resort
+      }
+    });
+  });
+
+
+
+
+
+  $('input[type=checkbox]').on('click', function(event){
+      var self = $(this),
+        new_interests = [];
+    $('input[type=checkbox]:checked').each(function(index, element) {
+      new_interests.push($(element).val());
+    });
+
+    var url = "/callout/users_count";
+
+    $.ajax({
+      url: url,
+      dataType: 'script',
+      data: {
+        checkedinterests: new_interests
       }
     });
   });
