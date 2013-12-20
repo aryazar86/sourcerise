@@ -118,7 +118,7 @@ $(document).ready(function() {
       new_interests.push($(element).val());
     });
 
-    var url = "/callouts/users_count_callouts";
+    var url = "/callout/users_count";
 
     $.ajax({
       url: url,
