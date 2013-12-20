@@ -6,9 +6,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @callouts = Callout.all.map { |c| c if @user.id == c.user_id }
 
+    @replied_to_callouts = []
+    if current_user == @user 
+      Callout.all.each do |c| 
+        c.replies.each do |d|
+          if d.sender == current_user && c.user != current_user
+            @replied_to_callouts << c
+          end 
+        end
+      end
+    end
+
+    @replied_to_callouts.uniq!
+
     unless @user == current_user || (current_user.is_media? && @user.is_source?)
       redirect_to user_path(current_user), notice: 'You may only view your own profile'
     end
+
   end
 
   def new

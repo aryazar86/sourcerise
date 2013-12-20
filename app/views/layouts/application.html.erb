@@ -26,6 +26,14 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
+
+      <% if flash[:notice] %>
+        <li style="line-height:45px; color:white; font-size:10pt; margin-right: 10px;"><em><%= flash[:notice] %>!</em></li>
+      <% end %>
+      <% if flash[:alert] %>
+        <li style="line-height:45px; color:white; font-size:10pt; margin-right: 10px;"><em><%= flash[:alert] %>!</em></li>
+      <% end %>
+
       <% if current_user %>
         <li class="active"><%= link_to current_user.first_name.capitalize, user_path(current_user.id) %></li>
         <li>
@@ -52,15 +60,6 @@
 
   </section>
 </nav>
-
-
-  <% if flash[:notice] %>
-    <div style="text-align:center" id="notice" data-notice class="alert-box info radius"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div style="text-align:center" id="alert" data-alert class="alert-box warning radius"><%= flash[:alert] %></div>
-  <% end %>
-
 
       <%= yield %>
     </div>

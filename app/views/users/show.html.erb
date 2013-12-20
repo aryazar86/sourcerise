@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="large-8 columns right-col">
-    <h3>Your activity:</h3>
+    <h3>Activity:</h3>
     <% @callouts.each do |c| %>
       <% if c != nil %>
         <%= link_to (callout_path(c.id)) do %>
@@ -34,5 +34,26 @@
           </div>
         <% end %>
       <% end %>
+    <% end %>    
+    <% if current_user == @user %>
+      <hr/>
+      <h3>Conversations:</h3>
+      <% @replied_to_callouts.each do |r| %>
+        <% if r != nil %>
+          <%= link_to (callout_path(r.id)) do %>
+            <div class="callout-display">
+              <%= image_tag(r.image) %>
+              <p><%= r.subject.truncate(20) %></p>
+              <% r.replies.each do |j| %>
+                <% if j.receiver_id == current_user.id && j.is_read == false %>
+                <small>New messages!</small>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
+
+
   </div>

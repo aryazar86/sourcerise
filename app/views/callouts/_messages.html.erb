@@ -1,18 +1,37 @@
 <div class="tabs-content vertical" id="messages-content">
   <div class="content active" id="<%=messenger.id%>">
-  <% callout.replies.each do |r| %>
-    <% if (messenger == r.sender) || (messenger.id == r.receiver_id) %>
-      <p><%=r.comment%> <em>by 
-        <% if r.sender.is_source? %>
-          <%= link_to r.sender.first_name, user_path(r.sender.id) %> 
-        <% elsif r.sender == current_user %> 
-          <%= r.sender.first_name %>
-        <% else %>
-          a media user from <%= r.sender.location %>
+
+    <% if callout.user == current_user %>
+      <% callout.replies.each do |r| %>
+        <% if (messenger == r.sender) || (messenger.id == r.receiver_id) %>
+          <p><%=r.comment%> <em>by 
+            <% if r.sender.is_source? %>
+              <%= link_to r.sender.first_name, user_path(r.sender.id) %> 
+            <% elsif r.sender == current_user %> 
+              <%= r.sender.first_name %>
+            <% else %>
+              a media user from <%= r.sender.location %>
+            <% end %>
+            on <%=r.created_at.strftime("%b %e %Y at %l:%M %P") %></em></p>
         <% end %>
-        on <%=r.created_at.strftime("%b %e %Y at %l:%M %P") %></em></p>
+      <% end %>
+    <% else %>
+      <% callout.replies.each do |r| %>
+        <% if (current_user == r.sender) || (current_user.id == r.receiver_id) %>
+          <p><%=r.comment%> <em>by 
+            <% if r.sender.is_source? %>
+              <%= link_to r.sender.first_name, user_path(r.sender.id) %> 
+            <% elsif r.sender == current_user %> 
+              <%= r.sender.first_name %>
+            <% else %>
+              a media user from <%= r.sender.location %>
+            <% end %>
+            on <%=r.created_at.strftime("%b %e %Y at %l:%M %P") %></em></p>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+
+
     <%= form_for [callout, Reply.new], :remote => true do |f| %>
       <div class="field">
         <p>Would you like to make a reply?</p>

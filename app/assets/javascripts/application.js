@@ -22,8 +22,7 @@ $(document).ready(function() {
   heightify();
 
   function heightify() {
-    height = "" + document.documentElement.clientHeight
-    console.log(height)
+    height = "" + $(document).height()
     $('.inner-wrap').css (
       'height', height
       )
