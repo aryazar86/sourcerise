@@ -130,6 +130,5 @@ input[type="checkbox"].checkboxes {
 }
 
 #profile_image_container {
-  float: left;
   margin-right: 10px;
 }
