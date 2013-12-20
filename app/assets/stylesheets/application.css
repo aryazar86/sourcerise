@@ -127,3 +127,8 @@ input[type="checkbox"].checkboxes {
 .large-8.columns.right-col {
   padding:20px;
 }
+
+#profile_image_container {
+  float: left;
+  margin-right: 10px;
+}

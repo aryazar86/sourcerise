@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  mount_uploader :image, ImageUploader
+
+
   def is_media?
     self.user_role_id == 1
   end
