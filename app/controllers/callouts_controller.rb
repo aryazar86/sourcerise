@@ -23,8 +23,8 @@ class CalloutsController < ApplicationController
     @selected_interests = []
 
     
-    @interested_media = User.filter_users(current_user.interests).select{|u| u.is_media?}
-    @interested_sources = User.filter_users(current_user.interests).select{|u| u.is_source?}
+    @interested_media = User.filter_users(@selected_interests).select{|u| u.is_media?}
+    @interested_sources = User.filter_users(@selected_interests).select{|u| u.is_source?}
   end
 
   def create
@@ -99,6 +99,21 @@ class CalloutsController < ApplicationController
     end
   end
 
+  def users_count
+    
+    @interests = Interest.find(params[:checkedinterests])
+    
+
+    @interested_media = User.filter_users(@interests).select{|u| u.is_media?}
+    @interested_sources = User.filter_users(@interests).select{|u| u.is_source?}
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+
+  
   private
   def callout_params
     params.require(:callout).permit(:subject, :deadline, :description, :user_id, :image)
