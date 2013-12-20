@@ -2,7 +2,9 @@
 <div class="row">
   <div class="large-6 columns">
     <h3><b>Callout: <%= @callout.subject %></b></h3>
-    <% if @callout.user.is_media? %>
+    <% if @callout.user == current_user %>
+      <h5><b>By:</b> You</h5>
+    <% elsif @callout.user.is_media? %>
       <h5><b>By:</b> Media Member from <%= @callout.user.location %></h5>
     <% else %>  
       <h5><b>By:</b> <%= @callout.user.first_name %></h5>
