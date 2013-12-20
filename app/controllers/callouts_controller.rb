@@ -105,12 +105,18 @@ class CalloutsController < ApplicationController
   end
 
   def users_count
-    
-    @interests = Interest.find(params[:checkedinterests])
+    if params[:checkedinterests]
+      @interests = Interest.find(params[:checkedinterests])
+
+      @interested_media = User.filter_users(@interests).select{|u| u.is_media?}
+      @interested_sources = User.filter_users(@interests).select{|u| u.is_source?}
+    else
+      @interested_media = []
+      @interested_sources = []
+    end
     
 
-    @interested_media = User.filter_users(@interests).select{|u| u.is_media?}
-    @interested_sources = User.filter_users(@interests).select{|u| u.is_source?}
+    
 
     respond_to do |format|
       format.js {}
