@@ -10,7 +10,7 @@
         <% else %>
           a media user from <%= r.sender.location %>
         <% end %>
-        on <%=r.created_at%></em></p>
+        on <%=r.created_at.strftime("%b %e %Y at %l:%M %P") %></em></p>
     <% end %>
   <% end %>
     <%= form_for [callout, Reply.new], :remote => true do |f| %>
@@ -24,7 +24,7 @@
 
       <div class="actions">
         <%= f.submit "Reply", :id => "reply_button", :class => "button" %>
-        <span class='countdown'>300 characters remaning.</span>
+        <span class='countdown'>300 characters remaining.</span>
       </div>
     <% end %>
   </div>
