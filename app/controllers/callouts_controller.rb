@@ -1,19 +1,24 @@
 class CalloutsController < ApplicationController
 
   def index
-    #@media_callouts = Callout.all.select { |c| c.is_callout? }
     @media_callouts = Callout.filter_callouts(current_user.interests).select { |c| c.is_callout? }
-    #@story_suggests = Callout.all.select { |c| c.is_suggestion? }
     @story_suggests = Callout.filter_callouts(current_user.interests).select { |c| c.is_suggestion? }
   
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
     @selected_interests = current_user.interests
+    
   end
 
   def show
     @callout = Callout.find(params[:id])
-    @reply = @callout.replies.build
+    
+    @callout.replies.each do |r|
+      if r.is_read == false
+        r.update_attribute('is_read', true)
+      end
+    end
+
   end
 
   def new
@@ -103,5 +108,4 @@ class CalloutsController < ApplicationController
   def callout_params
     params.require(:callout).permit(:subject, :deadline, :description, :user_id, :image)
   end
-
 end

@@ -1,9 +1,13 @@
-<% if @callout.replies.first.id == nil %>
+<% if @callout.replies.empty? %>
   <p> No responses yet! </p>
+
 <% else %>
+
   <% messengers = [] %>
+
+  <!-- do server side in reply model -->
   <% @callout.replies.each do |r| %>
-    <% unless (r.sender == current_user) || (r.sender == nil) %>
+    <% unless (r.sender == current_user) %>
         <% messengers << r.sender %>
     <% end %>
   <% end %>
@@ -11,12 +15,18 @@
   <% if messengers.sort!.length > 1 %>
     <% messengers.uniq! %>
   <% end %>
+  <!-- do server side -->
 
   <dl class="tabs vertical" data-tab>
     <% messengers.each do |m| %>
-      <dd><a class="messenger" href="#<%=m.id%>" data-id="<%=m.id%>" data-callout="<%=@callout.id%>"><%= m.first_name %></a><dd>
+      <dd>
+        <a class="messenger" href="#<%=m.id%>" data-id="<%=m.id%>" data-callout="<%=@callout.id%>">
+          <%= m.first_name %>
+        </a>
+      <dd>
     <% end %>
   </dl>
-    <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => messengers.first, :reply => @reply } %>
+  
+  <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => messengers.first, :reply => @reply } %>
 
 <% end %>

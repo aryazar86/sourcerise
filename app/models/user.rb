@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  MEDIA = 1
+  SOURCE = 2
+
   has_many :callouts
+
+  has_many :replies
 
   belongs_to :user_role
   has_many :interest_connectors, :as => :interestable
@@ -23,20 +28,17 @@ class User < ActiveRecord::Base
 
 
   def self.filter_users(interested_items)
-    u = User.all
-    filtered_callouts = []
+    all_users = User.all
 
-    interested_items.each do |interest_in_question|
-      u.each do |x|
-        x.interests.each do |y|
-          if y.name.include?(interest_in_question.name)
-            filtered_callouts << x
+    filtered_callouts = interested_items.map do |interest_in_question|
+      all_users.each do |user|
+        user.interests.each do |interest|
+          if interest.name.include?(interest_in_question.name)
+            user
           end
         end
       end
     end
-    filtered_callouts.uniq!
-    filtered_callouts
+    filtered_callouts.uniq
   end
-
 end

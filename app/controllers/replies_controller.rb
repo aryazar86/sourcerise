@@ -11,7 +11,7 @@ class RepliesController < ApplicationController
     @callout = Callout.find(params[:callout_id])
     @reply2 = @callout.replies.build
 
-  respond_to do |format|
+    respond_to do |format|
       if @reply.save
         format.html { redirect_to callout_path(@callout), notice: "Reply posted" }
         format.js {}
@@ -19,7 +19,7 @@ class RepliesController < ApplicationController
         format.html { render :action => :show, notice: "Reply failed to post" }
         format.js {}
       end
-      end
+    end
   end
 
   def show
@@ -34,7 +34,7 @@ class RepliesController < ApplicationController
 
   private
   def reply_params
-    params.require(:reply).permit(:sender_id, :receiver_id, :comment, :callout_id)
+    params.require(:reply).permit(:sender_id, :receiver_id, :comment, :callout_id, :is_read)
   end
 
   def load_callout

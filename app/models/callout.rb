@@ -44,11 +44,4 @@ class Callout < ActiveRecord::Base
     filtered_callouts.uniq
     # filtered_callouts
   end
-
-  
-
-
-
-  
-
 end

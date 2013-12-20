@@ -8,6 +8,7 @@
 
       <div><%= image_tag 'email.png', size:"30" %> <%= @user.email %></div>
       <div><%= image_tag 'place-512.png', size:"25" %><%= @user.location %></div>
+      <div><%= image_tag ''
       <h3>Bio:</h3><p><%= @user.bio %></p>
       <h3><%= @user.organization %></h3>
       <div>
@@ -26,6 +27,11 @@
           <div class="callout-display">
             <%= image_tag(c.image) %>
           <p><%= c.subject %></p>
+          <% c.replies.each do |r| %>
+            <% if r.receiver_id == current_user.id && r.is_read ==false && c.user == current_user %>
+              <small>New messages!</small>
+            <% end %>
+          <% end %>
           </div>
         <% end %>
       <% end %>

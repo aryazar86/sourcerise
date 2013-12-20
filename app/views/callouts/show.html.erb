@@ -1,4 +1,5 @@
 <h1>Callout out out</h1>
+
 <% if @callout.user.is_media? %>
   <p>By a media user from <%= @callout.user.location %></p>
 <% else %>  
@@ -13,5 +14,5 @@
 <% if current_user == @callout.user %>
   <%= render :partial => "inbox", :object => @callout %>
 <% else %>
-  <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => current_user, :reply => @reply } %>
+  <%= render :partial => "messages", :locals => {:callout => @callout, :messenger => @callout.user, :reply => @reply } %>
 <% end %>

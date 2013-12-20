@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @callouts = Callout.all.map { |c| c if @user.id == c.user_id }
 
-    unless @user == current_user || (current_user.user_role_id == 1 && @user.user_role_id == 2)
+    unless @user == current_user || (current_user.is_media? && @user.is_source?)
       redirect_to user_path(current_user), notice: 'You may only view your own profile'
     end
   end
