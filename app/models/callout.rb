@@ -28,18 +28,14 @@ class Callout < ActiveRecord::Base
   end
 
 
-  def self.filter_callouts(interested_items)
-    c = Callout.all
+  def self.filter_callouts(interested_in)
+    all_callouts = Callout.all
     filtered_callouts = []
 
-    interested_items.each do |interest_in_question|
-      c.each do |a_callout|
-        a_callout.interests.each do |an_interest|
-          filtered_callouts << a_callout if an_interest == interest_in_question
-        end
-      end
+    interested_in.each do |interest_in_question|
+      all_callouts.each { |a_callout| filtered_callouts << a_callout if a_callout.interests
+        .include?(interest_in_question) }
     end
     filtered_callouts.uniq
-    # filtered_callouts
   end
 end
