@@ -33,11 +33,9 @@ class Callout < ActiveRecord::Base
     filtered_callouts = []
 
     interested_items.each do |interest_in_question|
-      c.each do |x|
-        x.interests.each do |y|
-          if y.name.include?(interest_in_question.name)
-            filtered_callouts << x
-          end
+      c.each do |a_callout|
+        a_callout.interests.each do |an_interest|
+          filtered_callouts << a_callout if an_interest == interest_in_question
         end
       end
     end
