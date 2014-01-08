@@ -1,8 +1,8 @@
 class CalloutsController < ApplicationController
 
   def index
-    @media_callouts = Callout.filter_callouts(current_user.interests).select { |c| c.is_callout? }
-    @story_suggests = Callout.filter_callouts(current_user.interests).select { |c| c.is_suggestion? }
+    @media_callouts = Callout.filter_callouts(current_user.interests, current_user.user_role_id)
+    @story_suggests = Callout.filter_callouts(current_user.interests, current_user.user_role_id)
   
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
@@ -87,8 +87,8 @@ class CalloutsController < ApplicationController
       @interests = Interest.all
     end
 
-    @media_callouts = Callout.filter_callouts(@interests).select { |c| c.is_callout? }
-    @story_suggests = Callout.filter_callouts(@interests).select { |c| c.is_suggestion? }
+    @media_callouts = Callout.filter_callouts(@interests, current_user.user_role_id)
+    @story_suggests = Callout.filter_callouts(@interests, current_user.user_role_id)
 
     respond_to do |format|
       format.js {}
@@ -102,8 +102,8 @@ class CalloutsController < ApplicationController
       @interests = Interest.all
     end
 
-    @media_callouts = Callout.filter_callouts(@interests).select { |c| c.is_callout? }
-    @story_suggests = Callout.filter_callouts(@interests).select { |c| c.is_suggestion? }
+    @media_callouts = Callout.filter_callouts(@interests, current_user.user_role_id)
+    @story_suggests = Callout.filter_callouts(@interests, current_user.user_role_id)
   
     respond_to do |format|
       format.js {}
