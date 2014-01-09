@@ -22,22 +22,21 @@ class User < ActiveRecord::Base
 
 
   def is_media?
-    self.user_role_id == 1
+    self.user_role_id == MEDIA
   end
 
   def is_source?
-    self.user_role_id == 2
+    self.user_role_id == SOURCE
   end
 
   def self.get_users(user_role_id)
-    if user_role_id == 1
+    if user_role_id == MEDIA
       users = User.all.select{|u| u.is_source?}
-    elsif user_role_id == 2
+    elsif user_role_id == SOURCE
       users = User.all.select{|u| u.is_media?}
     end
     users
   end
-
 
   def self.filter_users(interested_in, user_role_id)
     u = User.get_users(user_role_id)

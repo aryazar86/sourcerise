@@ -2,13 +2,11 @@ class CalloutsController < ApplicationController
 
   def index
     @media_callouts = Callout.filter_callouts(current_user.interests, current_user.user_role_id)
-    @story_suggests = Callout.filter_callouts(current_user.interests, current_user.user_role_id)
-  
+    
     @location_interests = Interest.all.map { |i| i if i.topic == "Location" }.compact
     @issue_interests = Interest.all.map { |i| i if i.topic == "Issue" }.compact
     @medium_interests = Interest.all.map { |i| i if i.topic == "Medium"}.compact
     @selected_interests = current_user.interests
-    
   end
 
   def show
@@ -19,7 +17,6 @@ class CalloutsController < ApplicationController
         r.update_attribute('is_read', true)
       end
     end
-
   end
 
   def new
@@ -30,8 +27,7 @@ class CalloutsController < ApplicationController
 
     @selected_interests = []
     
-    @interested_media = User.filter_users(@selected_interests,current_user.user_role_id)#.select{|u| u.is_media?}
-    @interested_sources = User.filter_users(@selected_interests, current_user.user_role_id)#.select{|u| u.is_source?}
+    @interested_users = User.filter_users(@selected_interests,current_user.user_role_id)
   end
 
   def create
@@ -88,7 +84,6 @@ class CalloutsController < ApplicationController
     end
 
     @media_callouts = Callout.filter_callouts(@interests, current_user.user_role_id)
-    @story_suggests = Callout.filter_callouts(@interests, current_user.user_role_id)
 
     respond_to do |format|
       format.js {}
@@ -103,8 +98,7 @@ class CalloutsController < ApplicationController
     end
 
     @media_callouts = Callout.filter_callouts(@interests, current_user.user_role_id)
-    @story_suggests = Callout.filter_callouts(@interests, current_user.user_role_id)
-  
+    
     respond_to do |format|
       format.js {}
     end
@@ -114,23 +108,16 @@ class CalloutsController < ApplicationController
     if params[:checkedinterests]
       @interests = Interest.find(params[:checkedinterests])
 
-      @interested_media = User.filter_users(@interests, current_user.user_role_id)#.select{|u| u.is_media?}
-      @interested_sources = User.filter_users(@interests, current_user.user_role_id)#.select{|u| u.is_source?}
+      @interested_users = User.filter_users(@interests, current_user.user_role_id)#.select{|u| u.is_media?}
     else
-      @interested_media = []
-      @interested_sources = []
+      @interested_users = []
     end
     
-
-    
-
     respond_to do |format|
       format.js {}
     end
   end
-
-
-  
+ 
   private
   def callout_params
     params.require(:callout).permit(:subject, :deadline, :description, :user_id, :image)

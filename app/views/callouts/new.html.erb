@@ -1,10 +1,10 @@
 <div class="row">
   <div class="small-12 small-centered columns">
     <% if current_user.user_role_id == 1 %>
-    <div class="user_count"><p><%=render :partial => 'callouts/users_count', :locals => {:interested_media => @interested_media, :interested_sources => @interested_sources} %></p></div>
+    <div class="user_count"><p><%=render :partial => 'callouts/users_count', :locals => {:interested_users => @interested_users} %></p></div>
       <%= render "callouts/form", :header => "Create a new Callout", :end_time => "Deadline" %>
     <% else %>
-      <div class="user_count"><p><%=render :partial => 'callouts/users_count', :locals => {:interested_media => @interested_media, :interested_sources => @interested_sources} %></p></div>
+      <div class="user_count"><p><%=render :partial => 'callouts/users_count', :locals => {:interested_users => @interested_users} %></p></div>
       <%= render "callouts/form", :header => "Create a New Story Suggestion", :end_time => "Expiration Date" %>
     <% end %>
   </div>

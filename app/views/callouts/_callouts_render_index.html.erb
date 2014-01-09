@@ -1,7 +1,7 @@
 <% if current_user.user_role_id == 1 %>
     
   <div class="calls">
-    <% story_suggests.each do |s| %>
+    <% media_callouts.each do |s| %>
       <%= link_to (callout_path(s.id)) do %>
         <div class="callout-display">
         <% if s.image %>

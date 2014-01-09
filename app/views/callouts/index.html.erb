@@ -10,8 +10,8 @@
       <div style="margin-left:10px; margin-right:10px">
         <hr/>
         <% if current_user.user_role_id == 1 %>
-          <% if @story_suggests %>
-          <div class= "count"><%="#{@story_suggests.length} callouts match the selected interests." %></div>
+          <% if @media_callouts %>
+          <div class= "count"><%="#{@media_callouts.length} suggestions match the selected interests." %></div>
           <% end %>
         <% else %>
           <% if @media_callouts %>
@@ -26,13 +26,13 @@
     <!-- main content goes here -->
     <% if current_user.user_role_id == 1 %>
   <h1 class="callout_headline">Story Suggestions</h1>
-  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %> 
+  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts} %> 
   
 
 <% else %>
 
   <h1 class="callout_headline">Media Callouts</h1>
-  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts, :story_suggests => @story_suggests} %>
+  <%= render :partial => "callouts_render_index", :locals => {:media_callouts => @media_callouts} %>
   
   
 <% end %>
