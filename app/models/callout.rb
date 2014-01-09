@@ -37,13 +37,13 @@ class Callout < ActiveRecord::Base
     output
   end
 
-  def self.filter_callouts(interested_in, user_id)
-    callouts = Callout.get_callouts(user_id)
+  def self.filter_callouts(interested_in, user_role_id)
+    callouts = Callout.get_callouts(user_role_id)
     filtered_callouts = []
     #For each of the interests passed in, we check to see if it's present in each callout's interests, and if it is, that callout gets added to the ouput array.
     interested_in.each do |interest_in_question|
-      callouts.each { |a_callout| filtered_callouts << a_callout if a_callout.interests
-        .include?(interest_in_question) }
+      callouts.each { |a_callout| filtered_callouts << a_callout if 
+        a_callout.interests.include?(interest_in_question) }
     end
     filtered_callouts.uniq
   end

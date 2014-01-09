@@ -30,8 +30,8 @@ class CalloutsController < ApplicationController
 
     @selected_interests = []
     
-    @interested_media = User.filter_users(@selected_interests).select{|u| u.is_media?}
-    @interested_sources = User.filter_users(@selected_interests).select{|u| u.is_source?}
+    @interested_media = User.filter_users(@selected_interests,current_user.user_role_id)#.select{|u| u.is_media?}
+    @interested_sources = User.filter_users(@selected_interests, current_user.user_role_id)#.select{|u| u.is_source?}
   end
 
   def create
@@ -114,8 +114,8 @@ class CalloutsController < ApplicationController
     if params[:checkedinterests]
       @interests = Interest.find(params[:checkedinterests])
 
-      @interested_media = User.filter_users(@interests).select{|u| u.is_media?}
-      @interested_sources = User.filter_users(@interests).select{|u| u.is_source?}
+      @interested_media = User.filter_users(@interests, current_user.user_role_id)#.select{|u| u.is_media?}
+      @interested_sources = User.filter_users(@interests, current_user.user_role_id)#.select{|u| u.is_source?}
     else
       @interested_media = []
       @interested_sources = []
