@@ -21,7 +21,11 @@
     <% messengers.each do |m| %>
       <dd>
         <a class="messenger" href="#<%=m.id%>" data-id="<%=m.id%>" data-callout="<%=@callout.id%>">
-          <%= m.first_name %>
+          <% if current_user.is_media? %>
+            <%= m.first_name %>
+          <% else %>
+            <%= m.location %>
+          <% end %>
         </a>
       <dd>
     <% end %>
